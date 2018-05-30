@@ -1,6 +1,20 @@
 defmodule Hexedio.Auth.User do
   use Ecto.Schema
   import Ecto.Changeset
+  alias Comeonin.Bcrypt
+
+  def changeset(user, attrs) do
+    user
+    |> cast(attrs, [:username, :password])
+    |> validate_required([:username, :password])
+    |> put_pass_hash()
+  end
+
+  defp put_pass_hash(%Ecto.Changeset{valid?: true, changes: %{password: password}} = changeset) do
+    change(changeset, password: Bcrypt.hashpwsalt(password))
+  end
+
+  defp put_pass_hash(changeset), do: changeset
 
 
   schema "users" do
@@ -10,10 +24,4 @@ defmodule Hexedio.Auth.User do
     timestamps()
   end
 
-  @doc false
-  def changeset(user, attrs) do
-    user
-    |> cast(attrs, [:username, :password])
-    |> validate_required([:username, :password])
-  end
 end
