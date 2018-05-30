@@ -35,7 +35,7 @@ defmodule HexedioWeb.Endpoint do
   plug Plug.Session,
     store: :cookie,
     key: "_hexedio_key",
-    signing_salt: "Ye/q/ZIH"
+    signing_salt: "PC+1Ke6X"
 
   plug HexedioWeb.Router
 

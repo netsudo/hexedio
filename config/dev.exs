@@ -51,8 +51,8 @@ config :phoenix, :stacktrace_depth, 20
 # Configure your database
 config :hexedio, Hexedio.Repo,
   adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
-  database: "hexedio_dev",
-  hostname: "db",
+  username: "hexdev",
+  password: "hexPassword",
+  database: "hexed",
+  hostname: "localhost",
   pool_size: 10

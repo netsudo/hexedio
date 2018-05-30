@@ -12,7 +12,7 @@ config :hexedio,
 # Configures the endpoint
 config :hexedio, HexedioWeb.Endpoint,
   url: [host: "localhost"],
-  secret_key_base: "X+9c1QC2UPTtaKXuz2IbtqCttbuB9uPE94WllQAVhcaiv5jfe4WyxP6Uq7SvF8U3",
+  secret_key_base: "6M0NM5W7bG+tlWm62BkSdnhrzEH9QYYEEmaBvzayL5JrtH+I6icsygU+ONAFgdBM",
   render_errors: [view: HexedioWeb.ErrorView, accepts: ~w(html json)],
   pubsub: [name: Hexedio.PubSub,
            adapter: Phoenix.PubSub.PG2]
