@@ -23,7 +23,7 @@ defmodule HexedioWeb.Router do
     get "/", PageController, :index
     get "/login", PageController, :login
     resources "/posts", PostController
-    post "/login_handler", PageController, :login_handler
+    post "/login", PageController, :login_handler
     post "/logout", PageController, :logout
 
   end
