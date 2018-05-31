@@ -17,6 +17,11 @@ config :hexedio, HexedioWeb.Endpoint,
   pubsub: [name: Hexedio.PubSub,
            adapter: Phoenix.PubSub.PG2]
 
+# Configure Guardian
+config :hexedio, Hexedio.Auth.Guardian,
+  issuer: "Hexed", #App name
+  secret_key: "l7nYTevAn4PHyuHlCfK9zmkvJ/nKjN1VjVZGvGZBSqpU+GhsqfSEMCaMvpyhA4nB" #mix guardian.gen.secret
+
 # Configures Elixir's Logger
 config :logger, :console,
   format: "$time $metadata[$level] $message\n",

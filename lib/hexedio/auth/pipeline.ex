@@ -1,6 +1,6 @@
 defmodule Hexedio.Auth.Pipeline do
   use Guardian.Plug.Pipeline, 
-    otp_app: :auth_ex,
+    otp_app: :hexedio,
     error_handler: Hexedio.Auth.ErrorHandler,
     module: Hexedio.Auth.Guardian
 

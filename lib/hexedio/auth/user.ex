@@ -3,6 +3,7 @@ defmodule Hexedio.Auth.User do
   import Ecto.Changeset
   alias Comeonin.Bcrypt
 
+  @doc false
   def changeset(user, attrs) do
     user
     |> cast(attrs, [:username, :password])

@@ -1,5 +1,5 @@
 defmodule Hexedio.Auth.Guardian do
-  use Guardian, otp_app: :auth_ex
+  use Guardian, otp_app: :hexedio
 
   alias Hexedio.Auth
 

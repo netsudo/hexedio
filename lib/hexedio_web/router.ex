@@ -9,11 +9,23 @@ defmodule HexedioWeb.Router do
     plug :put_secure_browser_headers
   end
 
+  pipeline :auth do
+    plug Hexedio.Auth.Pipeline
+  end
+
+  pipeline :ensure_auth do
+    plug Guardian.Plug.EnsureAuthenticated
+  end
+
   scope "/", HexedioWeb do
-    pipe_through :browser # Use the default browser stack
+    pipe_through [:browser, :auth,] # Use the default browser stack
 
     get "/", PageController, :index
+    get "/login", PageController, :login
     resources "/posts", PostController
+    post "/login_handler", PageController, :login_handler
+    post "/logout", PageController, :logout
+
   end
 
 end
