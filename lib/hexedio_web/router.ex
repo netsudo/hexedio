@@ -18,14 +18,19 @@ defmodule HexedioWeb.Router do
   end
 
   scope "/", HexedioWeb do
-    pipe_through [:browser, :auth,] 
+    pipe_through [:browser, :auth] 
 
     get "/", PageController, :index
-    resources "/posts", PostController
     get "/login", AuthController, :login
     post "/login_handler", AuthController, :login_handler
     post "/logout", AuthController, :logout
 
+  end
+
+  scope "/", HexedioWeb do
+    pipe_through [:browser, :auth, :ensure_auth] 
+    
+    resources "/posts", PostController
   end
 
 end

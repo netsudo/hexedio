@@ -4,9 +4,11 @@ defmodule HexedioWeb.PostController do
   alias Hexedio.Posts
   alias Hexedio.Posts.Post
 
-  def index(conn, _params) do
-    posts = Posts.list_posts()
-    render(conn, "index.html", posts: posts)
+  def index(conn, params) do
+    #posts = Posts.list_posts()
+    page = Post
+            |> Hexedio.Repo.paginate(params)
+    render(conn, "index.html", posts: page.entries, page: page)
   end
 
   def new(conn, _params) do

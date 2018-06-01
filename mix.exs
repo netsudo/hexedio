@@ -20,7 +20,7 @@ defmodule Hexedio.Mixfile do
   def application do
     [
       mod: {Hexedio.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto],
     ]
   end
 
@@ -44,6 +44,7 @@ defmodule Hexedio.Mixfile do
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 0.12"},
+      {:scrivener_ecto, "~> 1.0"}
     ]
   end
 
