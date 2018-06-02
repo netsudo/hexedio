@@ -12,12 +12,6 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :slug, class: "control-label" %>
-    <%= text_input f, :slug, class: "form-control" %>
-    <%= error_tag f, :slug %>
-  </div>
-
-  <div class="form-group">
     <%= label f, :content, class: "control-label" %>
     <%= textarea f, :content, class: "form-control" %>
     <%= error_tag f, :content %>
@@ -27,12 +21,6 @@
     <%= label f, :excerpt, class: "control-label" %>
     <%= textarea f, :excerpt, class: "form-control" %>
     <%= error_tag f, :excerpt %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :date_published, class: "control-label" %>
-    <%= date_select f, :date_published, class: "form-control" %>
-    <%= error_tag f, :date_published %>
   </div>
 
   <div class="form-group">

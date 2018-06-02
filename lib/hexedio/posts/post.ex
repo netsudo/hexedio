@@ -10,7 +10,7 @@ defmodule Hexedio.Posts.Post do
 
   schema "posts" do
     field :content, :string
-    field :date_published, :date
+    field :date_published, :date, default: Ecto.Date.utc
     field :excerpt, :string
     field :published, :boolean, default: false
     field :title, :string
