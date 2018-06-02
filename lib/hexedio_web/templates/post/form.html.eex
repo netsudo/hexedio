@@ -18,12 +18,6 @@
   </div>
 
   <div class="form-group">
-    <%= label f, :excerpt, class: "control-label" %>
-    <%= textarea f, :excerpt, class: "form-control" %>
-    <%= error_tag f, :excerpt %>
-  </div>
-
-  <div class="form-group">
     <%= label f, :published, class: "control-label" %>
     <%= checkbox f, :published, class: "checkbox" %>
     <%= error_tag f, :published %>

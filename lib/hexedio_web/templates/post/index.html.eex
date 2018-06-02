@@ -19,7 +19,6 @@
       <td><%= post.title %></td>
       <td><%= post.slug %></td>
       <td><%= post.content %></td>
-      <td><%= post.excerpt %></td>
       <td><%= post.date_published %></td>
       <td><%= post.published %></td>
 
