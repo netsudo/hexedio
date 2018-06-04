@@ -22,7 +22,7 @@ defmodule Hexedio.Posts do
   end
 
   @doc """
-  Gets a single post.
+  Gets a single post by id.
 
   Raises `Ecto.NoResultsError` if the Post does not exist.
 
@@ -36,6 +36,22 @@ defmodule Hexedio.Posts do
 
   """
   def get_post!(id), do: Repo.get!(Post, id)
+
+  @doc """
+  Gets a single post by slug.
+
+  Raises `Ecto.NoResultsError` if the Post does not exist.
+
+  ## Examples
+
+      iex> get_post!(123)
+      %Post{}
+
+      iex> get_post!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_post_by_slug!(slug), do: Repo.get_by!(Post, slug: slug)
 
   @doc """
   Creates a post.

@@ -13,8 +13,8 @@ defmodule HexedioWeb.PageController do
     render(conn, "blog.html", posts: page.entries, page: page)
   end
 
-  def blogpost(conn, %{"id" => id}) do
-    post = Posts.get_post!(id)
+  def blogpost(conn, %{"slug" => slug}) do
+    post = Posts.get_post_by_slug!(slug)
     render(conn, "blogpost.html", post: post)
   end
 
