@@ -21,6 +21,9 @@ defmodule HexedioWeb.Router do
     pipe_through [:browser, :auth] 
 
     get "/", PageController, :index
+    get "/blog", PageController, :blog
+    get "/blog/:id", PageController, :blog_show
+
     get "/login", AuthController, :login
     post "/login_handler", AuthController, :login_handler
     post "/logout", AuthController, :logout

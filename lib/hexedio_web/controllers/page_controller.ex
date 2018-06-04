@@ -5,4 +5,8 @@ defmodule HexedioWeb.PageController do
     render conn, "index.html"
   end
 
+  def blog(conn, _params) do
+    render conn, "blog.html"
+  end
+
 end
