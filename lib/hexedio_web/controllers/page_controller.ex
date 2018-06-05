@@ -1,5 +1,7 @@
 defmodule HexedioWeb.PageController do
   use HexedioWeb, :controller
+  import Ecto.Query
+  alias Ecto.Query
   alias Hexedio.Posts
   alias Hexedio.Posts.Post
 
@@ -9,7 +11,8 @@ defmodule HexedioWeb.PageController do
 
   def blog(conn, params) do
     page = Post
-            |> Hexedio.Repo.paginate(params)
+           |> where([p], p.published == ^true)
+           |> Hexedio.Repo.paginate(params)
     render(conn, "blog.html", posts: page.entries, page: page)
   end
 
