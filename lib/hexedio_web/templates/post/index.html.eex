@@ -6,7 +6,6 @@
       <th>Title</th>
       <th>Slug</th>
       <th>Content</th>
-      <th>Excerpt</th>
       <th>Date published</th>
       <th>Published</th>
 
@@ -19,7 +18,6 @@
       <td><%= post.title %></td>
       <td><%= post.slug %></td>
       <td><%= post.content %></td>
-      <td><%= post.excerpt %></td>
       <td><%= post.date_published %></td>
       <td><%= post.published %></td>
 
@@ -34,3 +32,13 @@
 </table>
 
 <span><%= link "New Post", to: post_path(@conn, :new) %></span>
+
+<div id="navigate-pages">
+  <%= if @page.page_number > 1 do %> 
+    <%= link "Prev Page", to: post_path(@conn, :index, page: @page.page_number - 1) %>
+  <% end %>
+
+  <%= if @page.page_number < @page.total_pages do %> 
+    <%= link "Next Page", to: post_path(@conn, :index, page: @page.page_number + 1) %>
+  <% end %>
+</div>

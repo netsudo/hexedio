@@ -44,7 +44,8 @@ defmodule Hexedio.Mixfile do
       {:guardian, "~> 1.0"},
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 0.12"},
-      {:scrivener_ecto, "~> 1.0"}
+      {:scrivener_ecto, "~> 1.0"},
+      {:ecto_autoslug_field, "~> 0.5"}
     ]
   end
 
