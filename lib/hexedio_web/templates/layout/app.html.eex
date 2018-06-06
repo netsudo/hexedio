@@ -17,6 +17,9 @@
         <%= if maybe_user(@conn) != nil do %>
           <nav role="navigation">
             <ul class="nav nav-pills pull-right">
+              <%= link "Logout", to: auth_path(@conn, :logout), method: :post%>
+            </ul>
+            <ul class="nav nav-pills pull-right">
               <%= link "Admin", to: post_path(@conn, :index), method: :get%>
             </ul>
           </nav>
