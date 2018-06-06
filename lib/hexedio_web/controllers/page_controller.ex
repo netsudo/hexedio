@@ -4,6 +4,7 @@ defmodule HexedioWeb.PageController do
   alias Ecto.Query
   alias Hexedio.Posts
   alias Hexedio.Posts.Post
+  alias Hexedio.Auth.Guardian
 
   def index(conn, _params) do
     render conn, "index.html"
@@ -17,7 +18,13 @@ defmodule HexedioWeb.PageController do
   end
 
   def blogpost(conn, %{"slug" => slug}) do
-    post = Posts.get_post_by_slug!(slug)
+    maybe_user = Guardian.Plug.current_resource(conn)
+    post = if maybe_user != nil do
+      Posts.get_post_by_slug!(slug)  
+    else
+      Posts.get_post_by_slug!(slug, true)
+    end
+
     render(conn, "blogpost.html", post: post)
   end
 

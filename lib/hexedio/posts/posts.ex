@@ -51,7 +51,8 @@ defmodule Hexedio.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post_by_slug!(slug), do: Repo.get_by!(Post, [slug: slug, published: true])
+  def get_post_by_slug!(slug, published), do: Repo.get_by!(Post, [slug: slug, published: published])
+  def get_post_by_slug!(slug), do: Repo.get_by!(Post, [slug: slug])
 
   @doc """
   Creates a post.

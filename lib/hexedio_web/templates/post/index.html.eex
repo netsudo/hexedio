@@ -15,7 +15,7 @@
   <tbody>
 <%= for post <- @posts do %>
     <tr>
-      <td><%= post.title %></td>
+      <td><%= link post.title, to: page_path(@conn, :blogpost, post.slug) %></td>
       <td><%= post.slug %></td>
       <td><%= post.content %></td>
       <td><%= post.date_published %></td>
