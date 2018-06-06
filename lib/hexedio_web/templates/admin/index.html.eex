@@ -22,23 +22,23 @@
       <td><%= post.published %></td>
 
       <td class="text-right">
-        <span><%= link "Show", to: post_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Edit", to: post_path(@conn, :edit, post), class: "btn btn-default btn-xs" %></span>
-        <span><%= link "Delete", to: post_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+        <span><%= link "Show", to: admin_path(@conn, :show, post), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: admin_path(@conn, :edit, post), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: admin_path(@conn, :delete, post), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<span><%= link "New Post", to: post_path(@conn, :new) %></span>
+<span><%= link "New Post", to: admin_path(@conn, :new) %></span>
 
 <div id="navigate-pages">
   <%= if @page.page_number > 1 do %> 
-    <%= link "Prev Page", to: post_path(@conn, :index, page: @page.page_number - 1) %>
+    <%= link "Prev Page", to: admin_path(@conn, :index, page: @page.page_number - 1) %>
   <% end %>
 
   <%= if @page.page_number < @page.total_pages do %> 
-    <%= link "Next Page", to: post_path(@conn, :index, page: @page.page_number + 1) %>
+    <%= link "Next Page", to: admin_path(@conn, :index, page: @page.page_number + 1) %>
   <% end %>
 </div>

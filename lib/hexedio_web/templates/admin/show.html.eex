@@ -29,5 +29,5 @@
 
 </ul>
 
-<span><%= link "Edit", to: post_path(@conn, :edit, @post) %></span>
-<span><%= link "Back", to: post_path(@conn, :index) %></span>
+<span><%= link "Edit", to: admin_path(@conn, :edit, @post) %></span>
+<span><%= link "Back", to: admin_path(@conn, :index) %></span>
