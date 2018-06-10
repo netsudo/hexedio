@@ -14,7 +14,8 @@ defmodule Hexedio.Posts.Post do
     field :published, :boolean, default: false
     field :title, :string
     field :slug, TitleSlug.Type
-
+    
+    many_to_many :categories, Hexedio.Posts.Category, join_through: "posts_tags"
 
     timestamps()
   end

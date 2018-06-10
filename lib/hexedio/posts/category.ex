@@ -6,6 +6,8 @@ defmodule Hexedio.Posts.Category do
   schema "categories" do
     field :name, :string
 
+    many_to_many :posts, Hexedio.Posts.Post, join_through: "posts_tags"
+
     timestamps()
   end
 
