@@ -23,6 +23,12 @@
     <%= error_tag f, :published %>
   </div>
 
+    <div class="form-group">
+      <%= label f, :category, class: "control-label" %>
+      <%= select f, :category, class: "checkbox" %>
+      <%= error_tag f, :category %>
+    </div>
+
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>

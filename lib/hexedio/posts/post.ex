@@ -15,7 +15,7 @@ defmodule Hexedio.Posts.Post do
     field :title, :string
     field :slug, TitleSlug.Type
     
-    many_to_many :categories, Hexedio.Posts.Category, join_through: "posts_tags"
+    many_to_many :categories, Hexedio.Posts.Category, join_through: "posts_categories"
 
     timestamps()
   end
@@ -24,7 +24,8 @@ defmodule Hexedio.Posts.Post do
   def changeset(post, attrs) do
     post
     |> cast(attrs, [:title, :content, :date_published, :published])
-    |> validate_required([:title, :content, :date_published, :published])
+    |> cast_assoc(:categories, required: true)
+    |> validate_required([:title, :content, :date_published, :published, :categories])
     #Using ecto-autoslug-field to generate the slug
     |> unique_constraint(:title)
     |> TitleSlug.maybe_generate_slug

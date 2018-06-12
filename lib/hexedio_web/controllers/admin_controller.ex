@@ -3,6 +3,7 @@ defmodule HexedioWeb.AdminController do
 
   alias Hexedio.Posts
   alias Hexedio.Posts.Post
+  alias Hexedio.Posts.Category
 
   def index(conn, params) do
     #posts = Posts.list_posts()
