@@ -7,6 +7,7 @@ defmodule Hexedio.Posts do
   alias Hexedio.Repo
 
   alias Hexedio.Posts.Post
+  alias Hexedio.Posts.Category
 
   @doc """
   Returns the list of posts.
@@ -66,10 +67,19 @@ defmodule Hexedio.Posts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(attrs \\ %{}) do
-    %Post{}
-    |> Post.changeset(attrs)
-    |> Repo.insert()
+  def create_post(category, post) do
+    changeset = Post.changeset(%Post{}, post)
+    post = Repo.insert!(changeset)
+      |> Repo.preload(:categories)
+    
+    categories_true = :maps.filter fn _, v -> v === "true" end, category
+    category_list = Enum.map(categories_true, fn {k, v} -> Repo.get_by!(Category, [name: k]) end)
+
+    post_changeset = Ecto.Changeset.change(post) 
+    post_with_categories = Ecto.Changeset.put_assoc(post_changeset, :categories, category_list)
+
+    Repo.update(post_with_categories)
+      
   end
 
   @doc """
@@ -119,7 +129,6 @@ defmodule Hexedio.Posts do
     Post.changeset(post, %{})
   end
 
-  alias Hexedio.Posts.Category
 
   @doc """
   Returns the list of categories.

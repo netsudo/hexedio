@@ -21,10 +21,10 @@ defmodule Hexedio.Posts.Post do
   end
 
   @doc false
-  def changeset(post, attrs) do
+  def changeset(post, attrs \\ %{}) do
     post
     |> cast(attrs, [:title, :content, :date_published, :published])
-    |> cast_assoc(:categories, required: true)
+    |> cast_assoc(:categories)
     |> validate_required([:title, :content, :date_published, :published, :categories])
     #Using ecto-autoslug-field to generate the slug
     |> unique_constraint(:title)

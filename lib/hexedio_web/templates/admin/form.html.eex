@@ -1,4 +1,5 @@
 <%= form_for @changeset, @action, fn f -> %>
+
   <%= if @changeset.action do %>
     <div class="alert alert-danger">
       <p>Oops, something went wrong! Please check the errors below.</p>
@@ -17,17 +18,18 @@
     <%= error_tag f, :content %>
   </div>
 
+  <%= for category <- @category_list do %>
+    <div class="form-group">
+      <%= label :categories, category.name, class: "control-label" %>
+      <%= checkbox :categories, category.name, class: "checkbox" %>
+    </div>
+  <% end %>
+
   <div class="form-group">
     <%= label f, :published, class: "control-label" %>
     <%= checkbox f, :published, class: "checkbox" %>
     <%= error_tag f, :published %>
   </div>
-
-    <div class="form-group">
-      <%= label f, :category, class: "control-label" %>
-      <%= select f, :category, class: "checkbox" %>
-      <%= error_tag f, :category %>
-    </div>
 
   <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
