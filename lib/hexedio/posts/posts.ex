@@ -68,8 +68,8 @@ defmodule Hexedio.Posts do
 
   """
   def create_post(post, categories) do
-    category_list = Map.keys(categories)
-    IO.inspect category_list
+    filter_unchecked = :maps.filter fn _, v -> v != "false" end, categories
+    category_list = Map.keys(filter_unchecked)
     attrs = Map.put(post, "categories", category_list)
 
     %Post{}
