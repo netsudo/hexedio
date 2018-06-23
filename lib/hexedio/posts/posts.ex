@@ -84,8 +84,13 @@ defmodule Hexedio.Posts do
 
   """
   def create_post(post, categories) do
+<<<<<<< HEAD
     filter_unchecked = :maps.filter fn _, v -> v != "false" end, categories
     category_list = Map.keys(filter_unchecked)
+=======
+    category_list = Map.keys(categories)
+    IO.inspect category_list
+>>>>>>> Using the actual put_assoc functionality in changeset now as opposed to rolling my own
     attrs = Map.put(post, "categories", category_list)
 
     %Post{}

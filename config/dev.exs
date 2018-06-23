@@ -55,6 +55,12 @@ config :hexedio, Hexedio.Repo,
   password: "hexPassword",
   database: "hexed",
   hostname: "localhost",
+<<<<<<< HEAD
   pool_size: 10,
   timeout: 30_000,
   pool_timeout: 30_000
+=======
+  pool_size: 40,
+  timeout: 60_000,
+  pool_timeout: 60_000
+>>>>>>> Using the actual put_assoc functionality in changeset now as opposed to rolling my own
