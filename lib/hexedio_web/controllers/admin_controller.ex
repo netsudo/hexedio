@@ -19,13 +19,14 @@ defmodule HexedioWeb.AdminController do
   end
 
   def create(conn, %{"post" => post_params, "categories" => category_params}) do
-    case Posts.create_post(category_params, post_params) do
-      {:ok, %Post{categories: [%Category{}]} = post} ->
+    case Posts.create_post(post_params, category_params) do
+      {:ok, %Post{} = post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
         |> redirect(to: admin_path(conn, :show, post))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", category_list: nil, changeset: changeset)
+        category_list = Posts.list_categories
+        render(conn, "new.html", category_list: category_list, changeset: changeset)
     end
   end
 

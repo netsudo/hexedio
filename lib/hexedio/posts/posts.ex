@@ -67,18 +67,14 @@ defmodule Hexedio.Posts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(category, post) do
-    changeset = Post.changeset(%Post{}, post)
-    post = Repo.insert!(changeset)
-      |> Repo.preload(:categories)
-    
-    categories_true = :maps.filter fn _, v -> v === "true" end, category
-    category_list = Enum.map(categories_true, fn {k, v} -> Repo.get_by!(Category, [name: k]) end)
+  def create_post(post, categories) do
+    category_list = Map.keys(categories)
+    IO.inspect category_list
+    attrs = Map.put(post, "categories", category_list)
 
-    post_changeset = Ecto.Changeset.change(post) 
-    post_with_categories = Ecto.Changeset.put_assoc(post_changeset, :categories, category_list)
-
-    Repo.update(post_with_categories)
+    %Post{}
+      |> Post.changeset(attrs)
+      |> Repo.insert()
       
   end
 
