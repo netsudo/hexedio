@@ -15,7 +15,7 @@ defmodule HexedioWeb.AdminController do
   def new(conn, _params) do
     changeset = Post.changeset(%Post{categories: [%Category{}]})
     category_list = Posts.list_categories
-    render(conn, "new.html", changeset: changeset, category_list: category_list)
+    render(conn, "new.html", changeset: changeset, category_list: category_list, post_categories: [])
   end
 
   def create(conn, %{"post" => post_params, "categories" => category_params}) do
@@ -39,7 +39,8 @@ defmodule HexedioWeb.AdminController do
     post = Posts.get_post!(id)
     changeset = Post.changeset(%Post{categories: [%Category{}]})
     category_list = Posts.list_categories
-    render(conn, "edit.html", post: post, changeset: changeset, category_list: category_list)
+    post_categories = Posts.list_post_categories!(id)
+    render(conn, "edit.html", post: post, changeset: changeset, category_list: category_list, post_categories: post_categories)
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
