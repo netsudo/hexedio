@@ -22,6 +22,11 @@ defmodule Hexedio.Posts do
     Repo.all(Post)
   end
 
+  def list_post_categories!(id) do
+    query = Repo.get!(Post, id) |> Repo.preload(:categories)
+    for p <- query.categories, do: p.name
+  end
+
   @doc """
   Gets a single post by id.
 

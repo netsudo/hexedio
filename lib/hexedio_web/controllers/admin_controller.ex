@@ -37,8 +37,9 @@ defmodule HexedioWeb.AdminController do
 
   def edit(conn, %{"id" => id}) do
     post = Posts.get_post!(id)
-    changeset = Posts.change_post(post)
-    render(conn, "edit.html", post: post, changeset: changeset)
+    changeset = Post.changeset(%Post{categories: [%Category{}]})
+    category_list = Posts.list_categories
+    render(conn, "edit.html", post: post, changeset: changeset, category_list: category_list)
   end
 
   def update(conn, %{"id" => id, "post" => post_params}) do
