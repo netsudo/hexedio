@@ -25,7 +25,6 @@ defmodule Hexedio.Posts.Post do
 
   @doc false
   def changeset(post, attrs \\ %{"categories" => []}) do
-    IO.inspect attrs
     cat = Repo.all(from c in Category, where: c.name in ^attrs["categories"])
 
     post

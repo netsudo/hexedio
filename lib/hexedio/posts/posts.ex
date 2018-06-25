@@ -41,7 +41,7 @@ defmodule Hexedio.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id), do: Repo.get!(Post, id) |> Repo.preload(:categories)
 
   @doc """
   Gets a single post by slug.
@@ -95,10 +95,14 @@ defmodule Hexedio.Posts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_post(%Post{} = post, attrs) do
-    post
-    |> Post.changeset(attrs)
-    |> Repo.update()
+  def update_post(postobj, post, categories) do
+    filter_unchecked = :maps.filter fn _, v -> v != "false" end, categories
+    category_list = Map.keys(filter_unchecked)
+    attrs = Map.put(post, "categories", category_list)
+
+    postobj
+      |> Post.changeset(attrs)
+      |> Repo.update()
   end
 
   @doc """
