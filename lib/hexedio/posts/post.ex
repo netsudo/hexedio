@@ -1,5 +1,5 @@
 defmodule Hexedio.Posts.Post.TitleSlug do
-  use EctoAutoslugField.Slug, from: :title, to: :slug
+  use EctoAutoslugField.Slug, from: :title, to: :slug, always_change: true
 end
 
 defmodule Hexedio.Posts.Post do
