@@ -23,6 +23,7 @@ defmodule HexedioWeb.Router do
     get "/", PageController, :index
     get "/blog", PageController, :blog
     get "/blog/:slug", PageController, :blogpost
+    get "/blog/category/:category", PageController, :category_page
 
     get "/login", AuthController, :login
     post "/login_handler", AuthController, :login_handler
@@ -33,7 +34,8 @@ defmodule HexedioWeb.Router do
   scope "/", HexedioWeb do
     pipe_through [:browser, :auth, :ensure_auth] 
     
-    resources "/posts", PostController
+    resources "/admin", AdminController
+    resources "/categories", CategoryController
   end
 
 end

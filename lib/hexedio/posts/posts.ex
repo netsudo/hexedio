@@ -7,6 +7,7 @@ defmodule Hexedio.Posts do
   alias Hexedio.Repo
 
   alias Hexedio.Posts.Post
+  alias Hexedio.Posts.Category
 
   @doc """
   Returns the list of posts.
@@ -19,6 +20,11 @@ defmodule Hexedio.Posts do
   """
   def list_posts do
     Repo.all(Post)
+  end
+
+  def list_post_categories!(id) do
+    query = Repo.get!(Post, id) |> Repo.preload(:categories)
+    for p <- query.categories, do: p.name
   end
 
   @doc """
@@ -35,7 +41,7 @@ defmodule Hexedio.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post!(id), do: Repo.get!(Post, id)
+  def get_post!(id), do: Repo.get!(Post, id) |> Repo.preload(:categories)
 
   @doc """
   Gets a single post by slug.
@@ -51,7 +57,8 @@ defmodule Hexedio.Posts do
       ** (Ecto.NoResultsError)
 
   """
-  def get_post_by_slug!(slug), do: Repo.get_by!(Post, [slug: slug, published: true])
+  def get_post_by_slug!(slug, published), do: Repo.get_by!(Post, [slug: slug, published: published])
+  def get_post_by_slug!(slug), do: Repo.get_by!(Post, [slug: slug])
 
   @doc """
   Creates a post.
@@ -65,10 +72,15 @@ defmodule Hexedio.Posts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def create_post(attrs \\ %{}) do
+  def create_post(post, categories) do
+    filter_unchecked = :maps.filter fn _, v -> v != "false" end, categories
+    category_list = Map.keys(filter_unchecked)
+    attrs = Map.put(post, "categories", category_list)
+
     %Post{}
-    |> Post.changeset(attrs)
-    |> Repo.insert()
+      |> Post.changeset(attrs)
+      |> Repo.insert()
+      
   end
 
   @doc """
@@ -83,10 +95,14 @@ defmodule Hexedio.Posts do
       {:error, %Ecto.Changeset{}}
 
   """
-  def update_post(%Post{} = post, attrs) do
-    post
-    |> Post.changeset(attrs)
-    |> Repo.update()
+  def update_post(postobj, post, categories) do
+    filter_unchecked = :maps.filter fn _, v -> v != "false" end, categories
+    category_list = Map.keys(filter_unchecked)
+    attrs = Map.put(post, "categories", category_list)
+
+    postobj
+      |> Post.changeset(attrs)
+      |> Repo.update()
   end
 
   @doc """
@@ -116,5 +132,108 @@ defmodule Hexedio.Posts do
   """
   def change_post(%Post{} = post) do
     Post.changeset(post, %{})
+  end
+
+
+  @doc """
+  Returns the list of categories.
+
+  ## Examples
+
+      iex> list_categories()
+      [%Category{}, ...]
+
+  """
+  def list_categories do
+    Repo.all(Category)
+  end
+
+  @doc """
+  Gets a single category.
+
+  Raises `Ecto.NoResultsError` if the Category does not exist.
+
+  ## Examples
+
+      iex> get_category!(123)
+      %Category{}
+
+      iex> get_category!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_category!(id), do: Repo.get!(Category, id)
+
+  def get_posts_by_category(category) do
+    posts = from p in Post, 
+      join: c in assoc(p, :categories),
+      where: p.published == ^true and c.name == ^category,
+      preload: [:categories]
+    Hexedio.Repo.paginate(posts)
+  end
+
+  @doc """
+  Creates a category.
+
+  ## Examples
+
+      iex> create_category(%{field: value})
+      {:ok, %Category{}}
+
+      iex> create_category(%{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def create_category(attrs \\ %{}) do
+    %Category{}
+    |> Category.changeset(attrs)
+    |> Repo.insert()
+  end
+
+  @doc """
+  Updates a category.
+
+  ## Examples
+
+      iex> update_category(category, %{field: new_value})
+      {:ok, %Category{}}
+
+      iex> update_category(category, %{field: bad_value})
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def update_category(%Category{} = category, attrs) do
+    category
+    |> Category.changeset(attrs)
+    |> Repo.update()
+  end
+
+  @doc """
+  Deletes a Category.
+
+  ## Examples
+
+      iex> delete_category(category)
+      {:ok, %Category{}}
+
+      iex> delete_category(category)
+      {:error, %Ecto.Changeset{}}
+
+  """
+  def delete_category(%Category{} = category) do
+    Repo.delete(category)
+  end
+
+  @doc """
+  Returns an `%Ecto.Changeset{}` for tracking category changes.
+
+  ## Examples
+
+      iex> change_category(category)
+      %Ecto.Changeset{source: %Category{}}
+
+  """
+  def change_category(%Category{} = category) do
+    Category.changeset(category, %{})
   end
 end

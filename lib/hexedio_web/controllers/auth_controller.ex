@@ -7,14 +7,7 @@ defmodule HexedioWeb.AuthController do
   def login(conn, _params) do
     changeset = Auth.change_user(%User{})
     maybe_user = Guardian.Plug.current_resource(conn)
-    message = if maybe_user != nil do
-      "Someone is logged in"
-    else
-      "No one is logged in"
-    end
-
     conn 
-      |> put_flash(:info, message)
       |> render("login.html", changeset: changeset, action:
                 auth_path(conn, :login_handler), maybe_user: maybe_user)
   end
