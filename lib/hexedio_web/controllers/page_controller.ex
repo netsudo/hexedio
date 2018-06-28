@@ -28,4 +28,9 @@ defmodule HexedioWeb.PageController do
     render(conn, "blogpost.html", post: post)
   end
 
+  def category_page(conn, %{"category" => category}) do
+    page = Posts.get_posts_by_category(category) 
+    render(conn, "category_page.html", posts: page.entries, page: page)
+  end
+
 end

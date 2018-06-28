@@ -164,6 +164,14 @@ defmodule Hexedio.Posts do
   """
   def get_category!(id), do: Repo.get!(Category, id)
 
+  def get_posts_by_category(category) do
+    posts = from p in Post, 
+      join: c in assoc(p, :categories),
+      where: p.published == ^true and c.name == ^category,
+      preload: [:categories]
+    Hexedio.Repo.paginate(posts)
+  end
+
   @doc """
   Creates a category.
 
