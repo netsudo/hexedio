@@ -30,6 +30,15 @@
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
+      <div id="sidebar">
+        <div id="categories">
+          <h4>Categories</h4>
+          <%= for category <- categories() do %> 
+            <%= link category.name, to: page_path(@conn, :category_page, category.name), method: :get%>
+          <% end %>
+        </div>
+      </div>
+
       <main role="main">
         <%= render @view_module, @view_template, assigns %>
       </main>
