@@ -23,7 +23,7 @@ defmodule HexedioWeb.Router do
     get "/", PageController, :index
     get "/blog", PageController, :blog
     get "/blog/:slug", PageController, :blogpost
-    get "/blog/search", PageController, :search
+    get "/blog/search/query", PageController, :search
     get "/blog/category/:category", PageController, :category_page
 
     get "/login", AuthController, :login

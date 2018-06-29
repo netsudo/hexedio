@@ -11,7 +11,8 @@ defmodule HexedioWeb.PageController do
   end
 
   def search(conn, %{"query" => query}) do
-    render conn, "index.html"
+    page = Posts.search_posts(query)
+    render(conn, "blog.html", posts: page.entries, page: page)
   end
 
   def blog(conn, params) do
