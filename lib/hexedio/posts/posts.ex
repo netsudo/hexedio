@@ -27,6 +27,17 @@ defmodule Hexedio.Posts do
     for p <- query.categories, do: p.name
   end
 
+  def search_posts(query) do
+    wildcard_search = "%#{query}%"
+
+    q = from p in Post,
+      where: ilike(p.title, ^wildcard_search) and p.published == ^true,
+      or_where: ilike(p.content, ^wildcard_search) and p.published == ^true,
+      preload: [:categories]
+
+    Hexedio.Repo.paginate(q)
+  end
+
   @doc """
   Gets a single post by id.
 
