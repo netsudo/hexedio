@@ -31,6 +31,13 @@
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
       <div id="sidebar">
+        <div id="search">
+          <%= form_for @conn, page_path(@conn, :search), [method: :get, class: "pull-right"], fn f -> %>
+            <%= search_input f, :query %>
+            <%= submit "Search" %>
+          <% end %>
+        </div>
+
         <div id="categories">
           <h4>Categories</h4>
           <%= for category <- categories() do %> 
