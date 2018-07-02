@@ -18,7 +18,7 @@ defmodule Hexedio.Posts.Post do
     field :title, :string
     field :slug, TitleSlug.Type
     
-    many_to_many :categories, Hexedio.Posts.Category, [join_through: "posts_categories", on_replace: :delete]
+    many_to_many :categories, Hexedio.Posts.Category, [join_through: "posts_categories", on_replace: :delete, on_delete: :delete_all]
 
     timestamps()
   end
