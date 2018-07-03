@@ -20,7 +20,7 @@
               <%= link "Logout", to: auth_path(@conn, :logout), method: :post%>
             </ul>
             <ul class="nav nav-pills pull-right">
-              <%= link "Admin", to: admin_path(@conn, :index), method: :get%>
+              <%= link "Admin", to: post_path(@conn, :index), method: :get%>
             </ul>
           </nav>
         <% end %>

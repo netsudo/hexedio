@@ -35,7 +35,7 @@ defmodule HexedioWeb.Router do
   scope "/", HexedioWeb do
     pipe_through [:browser, :auth, :ensure_auth] 
     
-    resources "/admin", AdminController
+    resources "/post", PostController
     resources "/categories", CategoryController
   end
 
