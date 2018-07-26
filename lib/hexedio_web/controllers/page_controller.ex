@@ -10,6 +10,11 @@ defmodule HexedioWeb.PageController do
     render conn, "index.html"
   end
 
+  def search(conn, %{"query" => query}) do
+    page = Posts.search_posts(query)
+    render(conn, "blog.html", posts: page.entries, page: page)
+  end
+
   def blog(conn, params) do
     page = Post
            |> where([p], p.published == ^true)

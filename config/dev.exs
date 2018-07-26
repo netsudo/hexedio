@@ -55,6 +55,6 @@ config :hexedio, Hexedio.Repo,
   password: "hexPassword",
   database: "hexed",
   hostname: "localhost",
-  pool_size: 40,
-  timeout: 60_000,
-  pool_timeout: 60_000
+  pool_size: 10,
+  timeout: 30_000,
+  pool_timeout: 30_000

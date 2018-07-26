@@ -5,6 +5,12 @@
 /*.ez
 /env
 
+# Sass files
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map
+
 # Generated on crash by the VM
 erl_crash.dump
 

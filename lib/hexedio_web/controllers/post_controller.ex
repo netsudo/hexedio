@@ -1,4 +1,4 @@
-defmodule HexedioWeb.AdminController do
+defmodule HexedioWeb.PostController do
   use HexedioWeb, :controller
 
   alias Hexedio.Posts
@@ -6,7 +6,6 @@ defmodule HexedioWeb.AdminController do
   alias Hexedio.Posts.Category
 
   def index(conn, params) do
-    #posts = Posts.list_posts()
     page = Post
             |> Hexedio.Repo.paginate(params)
     render(conn, "index.html", posts: page.entries, page: page)
@@ -23,7 +22,7 @@ defmodule HexedioWeb.AdminController do
       {:ok, %Post{} = post} ->
         conn
         |> put_flash(:info, "Post created successfully.")
-        |> redirect(to: admin_path(conn, :show, post))
+        |> redirect(to: post_path(conn, :show, post))
       {:error, %Ecto.Changeset{} = changeset} ->
         category_list = Posts.list_categories
         render(conn, "new.html", category_list: category_list, changeset: changeset)
@@ -50,7 +49,7 @@ defmodule HexedioWeb.AdminController do
       {:ok, post} ->
         conn
         |> put_flash(:info, "Post updated successfully.")
-        |> redirect(to: admin_path(conn, :show, post))
+        |> redirect(to: post_path(conn, :show, post))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "edit.html", post: post, changeset: changeset)
     end
@@ -62,6 +61,6 @@ defmodule HexedioWeb.AdminController do
 
     conn
     |> put_flash(:info, "Post deleted successfully.")
-    |> redirect(to: admin_path(conn, :index))
+    |> redirect(to: post_path(conn, :index))
   end
 end
