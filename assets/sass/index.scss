@@ -1,6 +1,11 @@
 $accent-color: #63C124;
 
-#title {
+body {
+	display: flex;
+	margin-top: 20%;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
 	font-family: "courier New", Monospace;
 	font-size: 10pt;
 
@@ -12,9 +17,6 @@ $accent-color: #63C124;
 		color: $accent-color;
 		margin: 0;
 		padding: 0;
-	}
-
-	#nav {
 	}
 
 	a:link {
