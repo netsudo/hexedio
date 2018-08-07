@@ -1,0 +1,24 @@
+$accent-color: #63C124;
+
+#title {
+	font-family: "courier New", Monospace;
+	font-size: 10pt;
+
+	#asci {
+		font-family: inherit;
+		font-size: inherit;
+		white-space: pre;
+		text-shadow: 0 0 0 $accent-color;
+		color: $accent-color;
+		margin: 0;
+		padding: 0;
+	}
+
+	#nav {
+	}
+
+	a:link {
+		margin-top: 0;
+	}
+}
+

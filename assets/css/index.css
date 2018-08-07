@@ -1,0 +1,15 @@
+#title {
+  font-family: "courier New", Monospace;
+  font-size: 10pt; }
+  #title #asci {
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre;
+    text-shadow: 0 0 0 #63C124;
+    color: #63C124;
+    margin: 0;
+    padding: 0; }
+  #title a:link {
+    margin-top: 0; }
+
+/*# sourceMappingURL=index.css.map */

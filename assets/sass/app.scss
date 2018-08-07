@@ -1,5 +1,15 @@
 $background-color: #000611;
 $accent-color: #63C124;
+$accent-dark: #6aa841;
 $text-color: #D7E5E2;
 $gold-color: #FFBF00;
 $secondary-color: #364652;
+
+body {
+	background-color: $background-color;
+	color: $text-color;
+}
+
+:link {
+	color: $accent-color;
+}
