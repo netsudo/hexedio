@@ -1,8 +1,10 @@
 $accent-color: #63C124;
 
+html {height: 100%;}
+
 body {
 	display: flex;
-	margin-top: 20%;
+	height: 70%;
 	align-items: center;
 	justify-content: center;
 	flex-direction: column;
