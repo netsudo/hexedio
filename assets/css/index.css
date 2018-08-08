@@ -8,7 +8,9 @@ body {
   justify-content: center;
   flex-direction: column;
   font-family: "courier New", Monospace;
-  font-size: 10pt; }
+  font-size: 10pt;
+  background-color: #000611;
+  color: #D7E5E2; }
   body #asci {
     font-family: inherit;
     font-size: inherit;
@@ -19,5 +21,8 @@ body {
     padding: 0; }
   body a:link {
     margin-top: 0; }
+
+:link {
+  color: #63C124; }
 
 /*# sourceMappingURL=index.css.map */
