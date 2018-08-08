@@ -1,6 +1,8 @@
 body {
   background-color: #000611;
-  color: #D7E5E2; }
+  color: #D7E5E2;
+  font-family: "courier New", Monospace;
+  font-size: 10pt; }
 
 :link {
   color: #63C124; }
