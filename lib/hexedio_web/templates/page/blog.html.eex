@@ -3,7 +3,7 @@
 <div class="content">
 
   <div class="title">
-    <%= link post.title, to: page_path(@conn, :blogpost, post.slug) %>
+    <h1><%= link post.title, to: page_path(@conn, :blogpost, post.slug) %></h1>
   </div>
 
   <div class="post-info">

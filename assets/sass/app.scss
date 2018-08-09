@@ -27,6 +27,15 @@ body {
 	}
 }
 
+h1 {
+	margin-bottom: 0;
+}
+
+.post-info {
+	margin-bottom: 5px;
+	color: $secondary-color;
+}
+
 :link {
 	color: $accent-color;
 }
