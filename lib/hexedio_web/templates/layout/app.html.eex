@@ -14,7 +14,7 @@
   <body>
     <div class="container">
       <header class="header">
-        <span class="logo"></span>
+        <h1><%= link "Hexed.io", to: page_path(@conn, :blog) %></h1>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
