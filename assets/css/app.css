@@ -2,14 +2,17 @@ body {
   background-color: #000611;
   color: #D7E5E2;
   font-family: "courier New", Monospace;
-  font-size: 10pt; }
+  font-size: 10pt;
+  margin: 5px 30px 5px 30px; }
 
 #main-content {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  justify-content: space-evenly;
-  flex-direction: row-reverse; }
+  clear: both; }
+  #main-content #sidebar {
+    display: block;
+    float: right;
+    margin-left: 10px; }
+  #main-content main {
+    display: block; }
 
 :link {
   color: #63C124; }

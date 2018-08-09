@@ -10,14 +10,21 @@ body {
 	color: $text-color;
 	font-family: "courier New", Monospace;
 	font-size: 10pt;
+	margin: 5px 30px 5px 30px;
 }
 
 #main-content {
-	display: flex;
-	align-items: center;
-	flex-wrap: wrap;
-	justify-content: space-evenly;
-	flex-direction: row-reverse;
+	clear: both;
+
+	#sidebar {
+		display: block;
+		float: right;
+		margin-left: 10px;
+	}
+
+	main {
+		display: block;
+	}
 }
 
 :link {
