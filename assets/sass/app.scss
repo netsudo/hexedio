@@ -12,6 +12,14 @@ body {
 	font-size: 10pt;
 }
 
+#main-content {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	justify-content: space-evenly;
+	flex-direction: row-reverse;
+}
+
 :link {
 	color: $accent-color;
 }

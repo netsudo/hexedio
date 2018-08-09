@@ -4,6 +4,13 @@ body {
   font-family: "courier New", Monospace;
   font-size: 10pt; }
 
+#main-content {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  flex-direction: row-reverse; }
+
 :link {
   color: #63C124; }
 
