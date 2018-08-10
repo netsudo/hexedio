@@ -1,3 +1,17 @@
+.headline-wrapper {
+  display: block;
+  margin-top: 15px;
+  margin-bottom: -1px; }
+
+.sidebar-header {
+  display: inline; }
+
+.pre-header {
+  display: inline; }
+
+#sidebar span {
+  font-family: DejaVu Sans; }
+
 body {
   background-color: #000611;
   color: #D7E5E2;

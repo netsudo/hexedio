@@ -30,7 +30,11 @@
           </div>
 
           <div id="categories">
-            <h4>Categories</h4>
+            <div class="headline-wrapper">
+              <span class="pre-header">╭─$</span>
+              <h4 class="sidebar-header">Categories</h4>
+            </div>
+            <span class="post-header">╰─➤</span>
             <%= for category <- categories() do %> 
               <%= link category.name, to: page_path(@conn, :category_page, category.name), method: :get%>
             <% end %>

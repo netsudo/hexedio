@@ -5,6 +5,8 @@ $text-color: #D7E5E2;
 $gold-color: #FFBF00;
 $secondary-color: #364652;
 
+@import 'sidebar';
+
 body {
 	background-color: $background-color;
 	color: $text-color;
