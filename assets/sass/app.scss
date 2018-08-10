@@ -6,6 +6,7 @@ $gold-color: #FFBF00;
 $secondary-color: #364652;
 
 @import 'sidebar';
+@import 'search';
 
 body {
 	background-color: $background-color;
@@ -21,7 +22,6 @@ body {
 	#sidebar {
 		display: block;
 		float: right;
-		margin-left: 10px;
 	}
 
 	main {

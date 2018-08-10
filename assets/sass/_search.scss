@@ -1,0 +1,32 @@
+#search {
+    width: 100%;
+
+    input {
+        background: none;
+		font-family: inherit;
+        color: $text-color;
+        font-size: 10pt;
+        padding: 3px 0px 3px 0px;
+        display: block;
+        width: 100%;
+        border: none;
+        border-radius: 0;
+        border-bottom: 1px solid $accent-color;
+		outline: none;
+	}
+
+	#search-button {
+        margin: 0 0 0 auto;
+        margin-top: 5px;
+		border: none;
+		background-color: inherit;
+	}
+}
+
+.icon {
+	display: inline-block;
+	width: 1;
+	height: 1;
+	pointer-events: none;
+	border-bottom: 1px solid $accent-color;
+}
