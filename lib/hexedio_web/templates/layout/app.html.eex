@@ -42,14 +42,13 @@
 
           <div id="user-controls">
             <%= if maybe_user(@conn) != nil do %>
-              <nav role="navigation">
-                <ul class="nav nav-pills pull-right">
-                  <%= link "Logout", to: auth_path(@conn, :logout), method: :post%>
-                </ul>
-                <ul class="nav nav-pills pull-right">
-                  <%= link "Admin", to: post_path(@conn, :index), method: :get%>
-                </ul>
-              </nav>
+              <div class="headline-wrapper">
+                <span class="pre-header">╭─$</span>
+                <h4 class="sidebar-header">User Panel</h4>
+              </div>
+              <span class="post-header">╰─➤</span>
+              <%= link "Admin", to: post_path(@conn, :index), method: :get%>
+              <%= link "Logout", to: auth_path(@conn, :logout), method: :post%>
             <% end %>
           </div>
         </div>
