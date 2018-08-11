@@ -15,32 +15,38 @@
   #sidebar span {
     font-family: DejaVu Sans; }
 
-#search {
-  width: 100%; }
-  #search input {
+#search-form {
+  display: flex;
+  justify-content: row;
+  flex-wrap: nowrap; }
+  #search-form input {
+    align-self: flex-end;
     background: none;
     font-family: inherit;
     color: #D7E5E2;
     font-size: 10pt;
-    padding: 3px 0px 3px 0px;
-    display: block;
-    width: 100%;
     border: none;
     border-radius: 0;
     border-bottom: 1px solid #63C124;
-    outline: none; }
-  #search #search-button {
-    margin: 0 0 0 auto;
-    margin-top: 5px;
+    outline: none;
+    vertical-align: top;
+    padding: 5px 0px 3px 5px;
+    margin: 0; }
+  #search-form #search-button {
+    align-self: flex-end;
+    position: relative;
     border: none;
-    background-color: inherit; }
+    background-color: inherit;
+    padding: 0px 6px 0px 0px;
+    margin: 0 auto;
+    border-bottom: 1px solid #63C124; }
 
 .icon {
-  display: inline-block;
-  width: 1;
-  height: 1;
-  pointer-events: none;
-  border-bottom: 1px solid #63C124; }
+  display: inline;
+  width: 1.2em;
+  height: 1.2em;
+  padding: 2px 2px 2px 2px;
+  pointer-events: none; }
 
 body {
   background-color: #000611;

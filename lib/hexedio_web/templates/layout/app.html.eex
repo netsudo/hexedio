@@ -24,8 +24,12 @@
         <div id="sidebar">
           <div id="search">
             <%= form_for @conn, page_path(@conn, :search), [method: :get, id: "search-form"], fn f -> %>
-            <button type="submit" form="search-form" id="search-button"><object type="image/svg+xml" data="<%= static_path(@conn, "/images/135-search.svg") %>" class="icon"></object></button>
-              <%= search_input f, :query %>
+              <div>
+                <button type="submit" form="search-form" id="search-button"><object type="image/svg+xml" data="<%= static_path(@conn, "/images/135-search.svg") %>" class="icon"></object></button>
+              </div>
+              <div>
+                <%= search_input f, :query %>
+              </div>
             <% end %>
           </div>
 
