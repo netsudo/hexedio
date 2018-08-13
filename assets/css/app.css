@@ -51,15 +51,33 @@
   padding: 2px;
   pointer-events: none; }
 
+html {
+  height: 100%; }
+
 body {
+  height: 100%;
   background-color: #000611;
   color: #D7E5E2;
   font-family: "courier New", Monospace;
   font-size: 10pt;
-  margin: 5px 30px 5px 30px; }
+  margin: 0px 30px 0px 30px; }
+
+.container {
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: flex;
+  -webkit-flex-direction: column;
+  -moz-flex-direction: column;
+  flex-direction: column;
+  min-height: 100%; }
 
 #main-content {
-  clear: both; }
+  -webkit-flex-grow: 1;
+  -moz-flex-grow: 1;
+  flex-grow: 1;
+  padding-bottom: 25px; }
+  #main-content #post-content {
+    height: 100%; }
   #main-content #sidebar {
     display: block;
     float: right; }
@@ -70,7 +88,14 @@ h1 {
   margin-bottom: 0; }
 
 header {
-  margin-bottom: 35px; }
+  height: 15px; }
+
+footer {
+  color: #364652;
+  text-align: center;
+  -webkit-flex-shrink: 0;
+  -moz-flex-shrink: 0;
+  flex-shrink: 0; }
 
 .post-info {
   margin-bottom: 5px;
