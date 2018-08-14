@@ -86,6 +86,7 @@ body {
     display: block; }
 
 #navigate-pages {
+  text-align: center;
   margin-top: 25px; }
 
 .prev-page {
