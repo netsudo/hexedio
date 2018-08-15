@@ -1,0 +1,35 @@
+$background-color: #000611;
+$text-color: #D7E5E2;
+$accent-color: #63C124;
+
+html {height: 100%}
+
+body {
+	display: flex;
+	height: 70%;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	font-family: "courier New", Monospace;
+	font-size: 10pt;
+	background-color: $background-color;
+	color: $text-color;
+
+	#asci {
+		font-family: inherit;
+		font-size: inherit;
+		white-space: pre;
+		text-shadow: 0 0 0 $accent-color;
+		color: $accent-color;
+		margin: 0;
+		padding: 0;
+	}
+
+	a:link {
+		margin-top: 0;
+	}
+}
+
+:link {
+	color: $accent-color;
+}

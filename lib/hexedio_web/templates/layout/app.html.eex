@@ -13,42 +13,67 @@
 
   <body>
     <div class="container">
-      <header class="header">
-        <%= if maybe_user(@conn) != nil do %>
-          <nav role="navigation">
-            <ul class="nav nav-pills pull-right">
-              <%= link "Logout", to: auth_path(@conn, :logout), method: :post%>
-            </ul>
-            <ul class="nav nav-pills pull-right">
-              <%= link "Admin", to: post_path(@conn, :index), method: :get%>
-            </ul>
-          </nav>
-        <% end %>
-        <span class="logo"></span>
+      <header>
+        <h1><%= link "Hexed.io", to: page_path(@conn, :blog) %></h1>
       </header>
 
       <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
       <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
 
-      <div id="sidebar">
-        <div id="search">
-          <%= form_for @conn, page_path(@conn, :search), [method: :get, class: "pull-right"], fn f -> %>
-            <%= search_input f, :query %>
-            <%= submit "Search" %>
-          <% end %>
+      <div id="main-content">
+        <div id="sidebar">
+          <div id="search">
+            <%= form_for @conn, page_path(@conn, :search), [method: :get, id: "search-form"], fn f -> %>
+              <div id="search-btn">
+                <button type="submit" form="search-form" id="search-button"><object type="image/svg+xml" data="<%= static_path(@conn, "/images/135-search.svg") %>" class="icon"></object></button>
+              </div>
+              <div id="search-bar">
+                <%= search_input f, :query %>
+              </div>
+            <% end %>
+          </div>
+
+          <div id="page-nav">
+						<div class="headline-wrapper">
+							<span class="pre-header">╭─$</span>
+							<h4 class="sidebar-header">Pages</h4>
+						</div>
+						<span class="post-header">╰─➤</span>
+						<%= link "Homepage", to: page_path(@conn, :index), method: :get%>
+          </div>
+
+          <div id="categories">
+            <div class="headline-wrapper">
+              <span class="pre-header">╭─$</span>
+              <h4 class="sidebar-header">Categories</h4>
+            </div>
+            <span class="post-header">╰─➤</span>
+            <%= for category <- categories() do %> 
+              <%= link category.name, to: page_path(@conn, :category_page, category.name), method: :get%>
+            <% end %>
+          </div>
+
+          <div id="user-controls">
+            <%= if maybe_user(@conn) != nil do %>
+              <div class="headline-wrapper">
+                <span class="pre-header">╭─$</span>
+                <h4 class="sidebar-header">User Panel</h4>
+              </div>
+              <span class="post-header">╰─➤</span>
+              <%= link "Admin", to: post_path(@conn, :index), method: :get%>
+              <%= link "Logout", to: auth_path(@conn, :logout), method: :post%>
+            <% end %>
+          </div>
         </div>
 
-        <div id="categories">
-          <h4>Categories</h4>
-          <%= for category <- categories() do %> 
-            <%= link category.name, to: page_path(@conn, :category_page, category.name), method: :get%>
-          <% end %>
-        </div>
+        <main role="main">
+          <%= render @view_module, @view_template, assigns %>
+        </main>
       </div>
 
-      <main role="main">
-        <%= render @view_module, @view_template, assigns %>
-      </main>
+      <footer>
+        <p>Copyright © 2016-2018 Hexed.io</p>
+      </footer>
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>

@@ -1,3 +1,87 @@
-.fatcock {
-	font-size: 20px;
+$background-color: #000611;
+$accent-color: #63C124;
+$accent-dark: #6aa841;
+$text-color: #D7E5E2;
+$gold-color: #FFBF00;
+$secondary-color: #364652;
+
+@import 'sidebar';
+@import 'search';
+
+html {
+	height: 100%;
+}
+
+body {
+	height: 100%;
+	background-color: $background-color;
+	color: $text-color;
+	font-family: "courier New", Monospace;
+	font-size: 10pt;
+	margin: 0px 30px 0px 30px;
+}
+
+.container {
+	display: -webkit-flex;
+	display: -moz-flex;
+	display: flex;
+	-webkit-flex-direction: column;
+	-moz-flex-direction: column;
+	flex-direction: column;
+	min-height: 100%;
+}
+
+#main-content {
+	-webkit-flex-grow: 1;
+	-moz-flex-grow: 1;
+	flex-grow: 1;
+	padding-bottom: 25px;
+
+	#post-content {
+		height: 100%;
+	}
+
+	#sidebar {
+		display: block;
+		float: right;
+	}
+
+	main {
+		display: block;
+	}
+}
+
+#navigate-pages {
+	text-align: center;
+	margin-top: 25px;
+}
+
+.prev-page {
+	margin-right: 10px;
+}
+
+h1 {
+	margin-bottom: 0;
+}
+
+header {
+	height: 15px;
+}
+
+footer {
+	width: 100%;
+	color: $secondary-color;
+	text-align: center;
+	-webkit-flex-shrink: 0;
+	-moz-flex-shrink: 0;
+	flex-shrink: 0;
+}
+
+.post-info {
+	margin-bottom: 5px;
+	color: $secondary-color;
+}
+
+:link {
+	color: $accent-color;
 }

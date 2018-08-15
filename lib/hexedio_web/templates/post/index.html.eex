@@ -1,5 +1,6 @@
 <h2>Listing Posts</h2>
 
+<div id="admin-listings">
 <table class="table">
   <thead>
     <tr>
@@ -30,15 +31,16 @@
 <% end %>
   </tbody>
 </table>
+</div>
 
 <span><%= link "New Post", to: post_path(@conn, :new) %></span>
 
 <div id="navigate-pages">
   <%= if @page.page_number > 1 do %> 
-    <%= link "Prev Page", to: post_path(@conn, :index, page: @page.page_number - 1) %>
+    <%= link "⬅ Prev Page", to: post_path(@conn, :index, page: @page.page_number - 1), class: "prev-page" %>
   <% end %>
 
   <%= if @page.page_number < @page.total_pages do %> 
-    <%= link "Next Page", to: post_path(@conn, :index, page: @page.page_number + 1) %>
+    <%= link "Next Page ➡", to: post_path(@conn, :index, page: @page.page_number + 1), class: "next-page" %>
   <% end %>
 </div>

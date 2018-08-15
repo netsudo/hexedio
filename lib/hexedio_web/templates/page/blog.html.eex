@@ -3,7 +3,7 @@
 <div class="content">
 
   <div class="title">
-    <%= link post.title, to: page_path(@conn, :blogpost, post.slug) %>
+    <h1><%= link post.title, to: page_path(@conn, :blogpost, post.slug) %></h1>
   </div>
 
   <div class="post-info">
@@ -22,10 +22,10 @@
 
 <div id="navigate-pages">
   <%= if @page.page_number > 1 do %> 
-    <%= link "Prev Page", to: page_path(@conn, :blog, page: @page.page_number - 1) %>
+    <%= link "⬅ Prev Page", to: page_path(@conn, :blog, page: @page.page_number - 1), class: "prev-page" %>
   <% end %>
 
   <%= if @page.page_number < @page.total_pages do %> 
-    <%= link "Next Page", to: page_path(@conn, :blog, page: @page.page_number + 1) %>
+    <%= link "Next Page ➡", to: page_path(@conn, :blog, page: @page.page_number + 1), class: "next-page" %>
   <% end %>
 </div>

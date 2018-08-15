@@ -1,0 +1,28 @@
+html {
+  height: 100%; }
+
+body {
+  display: flex;
+  height: 70%;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  font-family: "courier New", Monospace;
+  font-size: 10pt;
+  background-color: #000611;
+  color: #D7E5E2; }
+  body #asci {
+    font-family: inherit;
+    font-size: inherit;
+    white-space: pre;
+    text-shadow: 0 0 0 #63C124;
+    color: #63C124;
+    margin: 0;
+    padding: 0; }
+  body a:link {
+    margin-top: 0; }
+
+:link {
+  color: #63C124; }
+
+/*# sourceMappingURL=index.css.map */
