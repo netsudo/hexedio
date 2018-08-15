@@ -1,5 +1,6 @@
 <h2>Listing Posts</h2>
 
+<div id="admin-listings">
 <table class="table">
   <thead>
     <tr>
@@ -30,6 +31,7 @@
 <% end %>
   </tbody>
 </table>
+</div>
 
 <span><%= link "New Post", to: post_path(@conn, :new) %></span>
 

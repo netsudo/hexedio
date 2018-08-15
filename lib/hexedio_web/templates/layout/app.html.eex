@@ -33,6 +33,15 @@
             <% end %>
           </div>
 
+          <div id="page-nav">
+						<div class="headline-wrapper">
+							<span class="pre-header">╭─$</span>
+							<h4 class="sidebar-header">Pages</h4>
+						</div>
+						<span class="post-header">╰─➤</span>
+						<%= link "Homepage", to: page_path(@conn, :index), method: :get%>
+          </div>
+
           <div id="categories">
             <div class="headline-wrapper">
               <span class="pre-header">╭─$</span>
