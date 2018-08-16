@@ -31,7 +31,7 @@ defmodule HexedioWeb.Router do
     post "/logout", AuthController, :logout
 
     get "/contact", PageController, :contact
-    get "/contact_handler", PageController, :contact_handler
+    post "/contact_handler", PageController, :contact_handler
   end
 
   scope "/", HexedioWeb do

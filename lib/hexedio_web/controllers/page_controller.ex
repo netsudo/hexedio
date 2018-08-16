@@ -45,7 +45,7 @@ defmodule HexedioWeb.PageController do
     render(conn, "contact.html", changeset: changeset)
   end
 
-  def contact_handler(conn, %{"contactform" => contact_params}) do
+  def contact_handler(conn, %{"contact_form" => contact_params}) do
     IO.inspect contact_params 
   end
 end
