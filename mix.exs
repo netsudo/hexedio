@@ -20,7 +20,7 @@ defmodule Hexedio.Mixfile do
   def application do
     [
       mod: {Hexedio.Application, []},
-      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :recaptcha],
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :recaptcha, :bamboo],
     ]
   end
 
@@ -47,6 +47,7 @@ defmodule Hexedio.Mixfile do
       {:scrivener_ecto, "~> 1.0"},
       {:ecto_autoslug_field, "~> 0.5"},
       {:recaptcha, "~> 2.3"},
+      {:bamboo, "~> 1.1"}
     ]
   end
 
