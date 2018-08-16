@@ -46,6 +46,6 @@ defmodule HexedioWeb.PageController do
   end
 
   def contact_handler(conn, %{"contact_form" => contact_params}) do
-    IO.inspect contact_params 
+    ContactForm.changeset(%ContactForm{}, contact_params)
   end
 end

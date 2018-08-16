@@ -20,7 +20,7 @@ defmodule Hexedio.Mixfile do
   def application do
     [
       mod: {Hexedio.Application, []},
-      extra_applications: [:logger, :runtime_tools, :scrivener_ecto],
+      extra_applications: [:logger, :runtime_tools, :scrivener_ecto, :recaptcha],
     ]
   end
 
@@ -45,7 +45,8 @@ defmodule Hexedio.Mixfile do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 0.12"},
       {:scrivener_ecto, "~> 1.0"},
-      {:ecto_autoslug_field, "~> 0.5"}
+      {:ecto_autoslug_field, "~> 0.5"},
+      {:recaptcha, "~> 2.3"},
     ]
   end
 
