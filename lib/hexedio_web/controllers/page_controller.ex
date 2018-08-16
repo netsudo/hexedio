@@ -3,6 +3,7 @@ defmodule HexedioWeb.PageController do
   import Ecto.Query
   alias Ecto.Query
   alias Hexedio.Posts
+  alias Hexedio.Contact.ContactForm
   alias Hexedio.Posts.Post
   alias Hexedio.Auth.Guardian
 
@@ -39,4 +40,12 @@ defmodule HexedioWeb.PageController do
     render(conn, "category_page.html", posts: page.entries, page: page)
   end
 
+  def contact(conn, _params) do
+    changeset = ContactForm.changeset(%ContactForm{}, %{}) 
+    render(conn, "contact.html", changeset: changeset)
+  end
+
+  def contact_handler(conn, %{"contactform" => contact_params}) do
+    IO.inspect contact_params 
+  end
 end
