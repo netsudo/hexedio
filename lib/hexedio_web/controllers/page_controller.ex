@@ -45,7 +45,12 @@ defmodule HexedioWeb.PageController do
     render(conn, "contact.html", changeset: changeset)
   end
 
-  def contact_handler(conn, %{"contact_form" => contact_params}) do
+  def contact_handler(conn, %{"contact_form" => contact_params, "g-recaptcha-response" => recaptcha}) do
     ContactForm.changeset(%ContactForm{}, contact_params)
+    case Recaptcha.verify(recaptcha) do
+      {:ok, response} -> IO.inspect response
+      {:error, errors} -> IO.puts errors
+    end
   end
+
 end
