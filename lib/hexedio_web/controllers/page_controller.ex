@@ -2,7 +2,7 @@ defmodule HexedioWeb.PageController do
   use HexedioWeb, :controller
   import Ecto.Query
   alias Ecto.Query
-  alias Hexedio.Posts
+  alias Hexedio.{Posts, Email, Mailer}
   alias Hexedio.Contact.ContactForm
   alias Hexedio.Posts.Post
   alias Hexedio.Auth.Guardian
@@ -46,10 +46,23 @@ defmodule HexedioWeb.PageController do
   end
 
   def contact_handler(conn, %{"contact_form" => contact_params, "g-recaptcha-response" => recaptcha}) do
-    ContactForm.changeset(%ContactForm{}, contact_params)
-    case Recaptcha.verify(recaptcha) do
-      {:ok, response} -> IO.inspect response
-      {:error, errors} -> IO.puts errors
+    changeset = ContactForm.changeset(%ContactForm{}, contact_params)
+    with {:ok, _} <- Recaptcha.verify(recaptcha), 
+         true <- changeset.valid?,
+         %Bamboo.Email{} <- Email.contact_email(changeset) 
+                            |> Mailer.deliver_now do
+        conn
+        |> put_flash(:info, "Email sent successfully.")
+        |> redirect(to: page_path(conn, :contact, %{}))
+    else 
+      {:error, [:missing_input_response]} ->
+        conn
+        |> put_flash(:error, "Must complete captcha to continue.")
+        |> redirect(to: page_path(conn, :contact, %{}))
+      {:error, %Ecto.Changeset{} = changeset} -> 
+      render(conn, "contact.html", changeset: %{changeset | action: :check_errors})
+      false -> 
+      render(conn, "contact.html", changeset: %{changeset | action: :check_errors})
     end
   end
 
