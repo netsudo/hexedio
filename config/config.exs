@@ -27,6 +27,26 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
+#Recaptcha plugin config, don't commit the keys!
+config :recaptcha,
+  public_key: {:system, "RECAPTCHA_PUBLIC_KEY"},
+  secret: {:system, "RECAPTCHA_PRIVATE_KEY"}
+
+config :hexedio, Hexedio.Mailer,
+  adapter: Bamboo.SMTPAdapter,
+  server: {:system, "SMTP_SERVER"},
+  hostname: "localhost",
+  port: 465,
+  username: {:system, "SMTP_USERNAME"},
+  password: {:system, "SMTP_PASSWORD"},
+  tls: :never, # can be `:always` or `:never`
+  allowed_tls_versions: [:"tlsv1", :"tlsv1.1", :"tlsv1.2"], # or {":system", ALLOWED_TLS_VERSIONS"} w/ comma seprated values (e.g. "tlsv1.1,tlsv1.2")
+  ssl: true, # can be `true`
+  retries: 2,
+  no_mx_lookups: false, # can be `true`
+  auth: :always # can be `always`. If your smtp relay requires authentication set it to `always`.
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env}.exs"
+
