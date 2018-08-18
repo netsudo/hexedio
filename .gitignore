@@ -4,6 +4,7 @@
 /deps
 /*.ez
 /env
+.env
 
 # Sass files
 .sass-cache/

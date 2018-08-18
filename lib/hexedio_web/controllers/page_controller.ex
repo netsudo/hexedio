@@ -49,7 +49,7 @@ defmodule HexedioWeb.PageController do
     changeset = ContactForm.changeset(%ContactForm{}, contact_params)
     with {:ok, _} <- Recaptcha.verify(recaptcha), 
          true <- changeset.valid?,
-         %Bamboo.Email{} <- Email.contact_email(changeset) 
+         %Bamboo.Email{} <- Email.contact_email(contact_params) 
                             |> Mailer.deliver_now do
         conn
         |> put_flash(:info, "Email sent successfully.")
