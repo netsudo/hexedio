@@ -27,10 +27,6 @@ config :logger, :console,
   format: "$time $metadata[$level] $message\n",
   metadata: [:user_id]
 
-# Import environment specific config. This must remain at the bottom
-# of this file so it overrides the configuration defined above.
-import_config "#{Mix.env}.exs"
-
 #Recaptcha plugin config, don't commit the keys!
 config :recaptcha,
   public_key: {:system, "RECAPTCHA_PUBLIC_KEY"},
@@ -49,3 +45,8 @@ config :hexedio, Hexedio.Mailer,
   retries: 2,
   no_mx_lookups: false, # can be `true`
   auth: :always # can be `always`. If your smtp relay requires authentication set it to `always`.
+
+# Import environment specific config. This must remain at the bottom
+# of this file so it overrides the configuration defined above.
+import_config "#{Mix.env}.exs"
+
