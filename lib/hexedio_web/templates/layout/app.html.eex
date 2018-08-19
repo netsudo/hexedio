@@ -37,6 +37,7 @@
 						</div>
 						<span class="post-header">╰─➤</span>
 						<%= link "Homepage", to: page_path(@conn, :index), method: :get%>
+						<%= link "Contact", to: page_path(@conn, :contact), method: :get%>
           </div>
 
           <div id="categories">
