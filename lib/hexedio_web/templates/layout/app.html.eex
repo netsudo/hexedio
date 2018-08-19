@@ -17,9 +17,6 @@
         <h1><%= link "Hexed.io", to: page_path(@conn, :blog) %></h1>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
       <div id="main-content">
         <div id="sidebar">
           <div id="search">
@@ -65,6 +62,7 @@
             <% end %>
           </div>
         </div>
+
 
         <main role="main">
           <%= render @view_module, @view_template, assigns %>
