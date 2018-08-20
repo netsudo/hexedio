@@ -19,14 +19,21 @@
 #search {
   width: 75%; }
 
-#search-form {
+.icon {
+  display: inline;
+  width: 1.2em;
+  height: 1.2em;
+  padding: 2px;
+  pointer-events: none; }
+
+.icon-input {
   display: flex;
   justify-content: row;
   flex-wrap: nowrap;
   border-bottom: 1px solid #63C124; }
-  #search-form #search-bar {
+  .icon-input .icon-bar {
     flex: 1; }
-    #search-form #search-bar input {
+    .icon-input .icon-bar input {
       width: 100%;
       align-self: flex-end;
       background: none;
@@ -38,19 +45,15 @@
       outline: none;
       padding: 5px 0px 3px 5px;
       margin: 0; }
-  #search-form #search-button {
+  .icon-input .icon-button {
     align-self: flex-end;
     border: none;
     background-color: inherit;
     padding: 0px 6px 0px 0px;
     margin: 0 auto; }
 
-.icon {
-  display: inline;
-  width: 1.2em;
-  height: 1.2em;
-  padding: 2px;
-  pointer-events: none; }
+.contact-form {
+  margin-top: 15px; }
 
 html {
   height: 100%; }

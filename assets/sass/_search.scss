@@ -2,13 +2,21 @@
 	width: 75%;
 }
 
-#search-form {
+.icon {
+	display: inline;
+	width: 1.2em;
+	height: 1.2em;
+	padding: 2px;
+	pointer-events: none;
+}
+
+.icon-input {
 	display: flex;
 	justify-content: row;
 	flex-wrap: nowrap;
 	border-bottom: 1px solid $accent-color;
 
-	#search-bar {
+	.icon-bar {
 		flex: 1;
 
 		input {
@@ -26,21 +34,11 @@
 		}
 	}
 
-	#search-button {
+	.icon-button {
 		align-self: flex-end;
 		border: none;
 		background-color: inherit;
 		padding: 0px 6px 0px 0px;
 		margin: 0 auto;
 	}
-
 }
-
-.icon {
-	display: inline;
-	width: 1.2em;
-	height: 1.2em;
-	padding: 2px;
-	pointer-events: none;
-}
-
