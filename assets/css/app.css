@@ -34,7 +34,6 @@
   .icon-input .icon-bar {
     flex: 1; }
     .icon-input .icon-bar input {
-      width: 100%;
       align-self: flex-end;
       background: none;
       font-family: inherit;
@@ -60,6 +59,12 @@
 
 .contact-form {
   margin-top: 15px; }
+
+#subject-input {
+  display: inline-block; }
+
+#email-input {
+  display: inline-block; }
 
 html {
   height: 100%; }
