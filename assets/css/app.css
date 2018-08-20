@@ -66,6 +66,16 @@
 #email-input {
   display: inline-block; }
 
+.contact-textarea {
+  margin-top: 10px; }
+  .contact-textarea textarea {
+    width: 60%;
+    height: 350px;
+    border-color: #63C124;
+    background: #000611;
+    outline: none;
+    color: #D7E5E2; }
+
 html {
   height: 100%; }
 

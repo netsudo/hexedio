@@ -9,3 +9,16 @@
 #email-input {
 	display: inline-block;
 }
+
+.contact-textarea {
+	margin-top: 10px;
+
+	textarea {
+		width: 60%;
+		height: 350px;
+		border-color: $accent-color;
+		background: $background-color;
+		outline: none;
+		color: $text-color;
+	}
+}
