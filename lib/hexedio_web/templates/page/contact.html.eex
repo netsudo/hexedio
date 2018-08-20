@@ -9,20 +9,31 @@
     </div>
   <% end %>
 
-  <div class="form-group">
-    <%= label f, :email, class: "control-label" %>
-    <%= text_input f, :email, class: "form-control" %>
+  <div class="icon-input">
+    <div class="icon-container">
+      <div class="icon-button">
+        <object type="image/svg+xml" data="<%= static_path(@conn, "/images/070-envelop.svg") %>" class="icon"></object>
+      </div>
+    </div>
+    <div class="icon-bar">
+      <%= text_input f, :email, class: "form-control" %>
+    </div>
     <%= error_tag f, :email %>
   </div>
 
-  <div class="form-group">
-    <%= label f, :subject, class: "control-label" %>
-    <%= text_input f, :subject, class: "checkbox" %>
+  <div class="icon-input">
+    <div class="icon-container">
+      <div class="icon-button">
+        <object type="image/svg+xml" data="<%= static_path(@conn, "/images/039-file-text2.svg") %>" class="icon"></object>
+      </div>
+    </div>
+    <div class="icon-bar">
+      <%= text_input f, :subject, class: "form-control" %>
+    </div>
     <%= error_tag f, :subject %>
   </div>
 
   <div class="form-group">
-    <%= label f, :body, class: "control-label" %>
     <%= textarea f, :body, class: "form-control" %>
     <%= error_tag f, :body %>
   </div>

@@ -51,6 +51,12 @@
     background-color: inherit;
     padding: 0px 6px 0px 0px;
     margin: 0 auto; }
+  .icon-input .icon-plain {
+    align-self: flex-end;
+    border: none;
+    background-color: inherit;
+    padding: 0px 6px 0px 0px;
+    margin: 0 auto; }
 
 .contact-form {
   margin-top: 15px; }

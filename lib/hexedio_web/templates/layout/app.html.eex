@@ -22,7 +22,7 @@
           <div id="search">
             <%= form_for @conn, page_path(@conn, :search), [method: :get, class: "icon-input", id: "search-form"], fn f -> %>
               <div class="icon-container">
-                <button type="submit" form="search-form" class="icon-button"><object type="image/svg+xml" data="<%= static_path(@conn, "/images/135-search.svg") %>" class="icon"></object></button>
+                <button type="submit" form="search-form" class="icon-plain"><object type="image/svg+xml" data="<%= static_path(@conn, "/images/135-search.svg") %>" class="icon"></object></button>
               </div>
               <div class="icon-bar">
                 <%= search_input f, :query %>
