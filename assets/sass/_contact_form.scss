@@ -1,4 +1,6 @@
 .contact-form {
+	display: block;
+	overflow: hidden;
 	margin-top: 15px;
 }
 
@@ -14,8 +16,9 @@
 	margin-top: 10px;
 
 	textarea {
-		width: 60%;
-		height: 350px;
+		width: 100%;
+		box-sizing: border-box;
+		height: 300px;
 		border-color: $accent-color;
 		background: $background-color;
 		outline: none;

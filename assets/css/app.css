@@ -58,6 +58,8 @@
     margin: 0 auto; }
 
 .contact-form {
+  display: block;
+  overflow: hidden;
   margin-top: 15px; }
 
 #subject-input {
@@ -69,8 +71,9 @@
 .contact-textarea {
   margin-top: 10px; }
   .contact-textarea textarea {
-    width: 60%;
-    height: 350px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 300px;
     border-color: #63C124;
     background: #000611;
     outline: none;
