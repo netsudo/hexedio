@@ -62,11 +62,19 @@
   overflow: hidden;
   margin-top: 15px; }
 
-#subject-input {
-  display: inline-block; }
+#top-inputs #subject-input {
+  display: inline-block;
+  margin-top: 10px; }
+#top-inputs #email-input {
+  display: inline-block;
+  margin-top: 10px; }
 
-#email-input {
-  display: inline-block; }
+#bottom-inputs {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 5px; }
 
 .contact-textarea {
   margin-top: 10px; }

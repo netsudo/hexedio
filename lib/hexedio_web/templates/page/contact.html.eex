@@ -9,31 +9,33 @@
     </div>
   <% end %>
 
-  <div id="email-input">
-    <div class="icon-input">
-      <div class="icon-container">
-        <div class="icon-button">
-          <object type="image/svg+xml" data="<%= static_path(@conn, "/images/070-envelop.svg") %>" class="icon"></object>
+  <div id="top-inputs">
+    <div id="email-input">
+      <div class="icon-input">
+        <div class="icon-container">
+          <div class="icon-button">
+            <object type="image/svg+xml" data="<%= static_path(@conn, "/images/070-envelop.svg") %>" class="icon"></object>
+          </div>
         </div>
+        <div class="icon-bar">
+          <%= text_input f, :email, class: "form-control" %>
+        </div>
+        <%= error_tag f, :email %>
       </div>
-      <div class="icon-bar">
-        <%= text_input f, :email, class: "form-control" %>
-      </div>
-      <%= error_tag f, :email %>
     </div>
-  </div>
 
-  <div id="subject-input">
-    <div class="icon-input">
-      <div class="icon-container">
-        <div class="icon-button">
-          <object type="image/svg+xml" data="<%= static_path(@conn, "/images/039-file-text2.svg") %>" class="icon"></object>
+    <div id="subject-input">
+      <div class="icon-input">
+        <div class="icon-container">
+          <div class="icon-button">
+            <object type="image/svg+xml" data="<%= static_path(@conn, "/images/039-file-text2.svg") %>" class="icon"></object>
+          </div>
         </div>
+        <div class="icon-bar">
+          <%= text_input f, :subject, class: "form-control" %>
+        </div>
+        <%= error_tag f, :subject %>
       </div>
-      <div class="icon-bar">
-        <%= text_input f, :subject, class: "form-control" %>
-      </div>
-      <%= error_tag f, :subject %>
     </div>
   </div>
 
@@ -42,12 +44,14 @@
     <%= error_tag f, :body %>
   </div>
 
-  <div class="form-group">
-    <%= raw Recaptcha.Template.display %>
-  </div>
+  <div id="bottom-inputs">
+    <div class="form-group">
+      <%= raw Recaptcha.Template.display %>
+    </div>
 
-  <div class="form-group">
-    <%= submit "Submit", class: "btn btn-primary" %>
+    <div class="form-group">
+      <%= submit "Submit", class: "btn btn-primary" %>
+    </div>
   </div>
 
   <% end %>
