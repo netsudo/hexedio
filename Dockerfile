@@ -1,5 +1,6 @@
-FROM elixir:1.6.5
-ARG DEBIAN_FRONTEND=noninteractive
+# Dockerfile
+FROM elixir:1.6.6
+ENV DEBIAN_FRONTEND=noninteractive
 
 # Install hex
 RUN mix local.hex --force
@@ -18,3 +19,5 @@ RUN apt-get install -y -q nodejs inotify-tools
 RUN mkdir /app
 ADD . /app
 WORKDIR /app
+RUN mix deps.get
+RUN cd assets && npm install && cd -

@@ -8,6 +8,9 @@ services:
     volumes:
       - .:/app
     ports:
-      - "4000:4000"
+      - "80:4000"
     depends_on:
       - db
+    environment:
+      - MIX_ENV=prod
+      - PORT=4000
