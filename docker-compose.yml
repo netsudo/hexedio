@@ -4,7 +4,7 @@ services:
     image: postgres
   web:
     build: .
-    command: mix phx.server
+    command: source .env; mix phx.server
     volumes:
       - .:/app
     ports:
