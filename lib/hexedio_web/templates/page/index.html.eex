@@ -17,7 +17,7 @@
   <div id="nav">
     <%= link "Blog", to: page_path(@conn, :blog), method: :get%>
     <a href="https://www.github.com/netsudo">Github</a>
-    <%= link "Contact", to: page_path(@conn, :blog), method: :get%>
+    <%= link "Contact", to: page_path(@conn, :contact), method: :get%>
   </div>
 </body>
 </html>

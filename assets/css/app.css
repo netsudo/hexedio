@@ -19,15 +19,21 @@
 #search {
   width: 75%; }
 
-#search-form {
+.icon {
+  display: inline;
+  width: 1.2em;
+  height: 1.2em;
+  padding: 2px;
+  pointer-events: none; }
+
+.icon-input {
   display: flex;
   justify-content: row;
   flex-wrap: nowrap;
   border-bottom: 1px solid #63C124; }
-  #search-form #search-bar {
+  .icon-input .icon-bar {
     flex: 1; }
-    #search-form #search-bar input {
-      width: 100%;
+    .icon-input .icon-bar input {
       align-self: flex-end;
       background: none;
       font-family: inherit;
@@ -38,19 +44,48 @@
       outline: none;
       padding: 5px 0px 3px 5px;
       margin: 0; }
-  #search-form #search-button {
+  .icon-input .icon-button {
+    align-self: flex-end;
+    border: none;
+    background-color: inherit;
+    padding: 0px 6px 0px 0px;
+    margin: 0 auto; }
+  .icon-input .icon-plain {
     align-self: flex-end;
     border: none;
     background-color: inherit;
     padding: 0px 6px 0px 0px;
     margin: 0 auto; }
 
-.icon {
-  display: inline;
-  width: 1.2em;
-  height: 1.2em;
-  padding: 2px;
-  pointer-events: none; }
+.contact-form {
+  display: block;
+  overflow: hidden;
+  margin-top: 15px; }
+
+#top-inputs #subject-input {
+  display: inline-block;
+  margin-top: 10px; }
+#top-inputs #email-input {
+  display: inline-block;
+  margin-top: 10px; }
+
+#bottom-inputs {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 5px; }
+
+.contact-textarea {
+  margin-top: 10px; }
+  .contact-textarea textarea {
+    width: 100%;
+    box-sizing: border-box;
+    height: 300px;
+    border-color: #63C124;
+    background: #000611;
+    outline: none;
+    color: #D7E5E2; }
 
 html {
   height: 100%; }
@@ -96,7 +131,8 @@ h1 {
   margin-bottom: 0; }
 
 header {
-  height: 15px; }
+  height: 15px;
+  margin-bottom: 50px; }
 
 footer {
   width: 100%;

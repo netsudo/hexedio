@@ -17,29 +17,27 @@
         <h1><%= link "Hexed.io", to: page_path(@conn, :blog) %></h1>
       </header>
 
-      <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-
       <div id="main-content">
         <div id="sidebar">
           <div id="search">
-            <%= form_for @conn, page_path(@conn, :search), [method: :get, id: "search-form"], fn f -> %>
-              <div id="search-btn">
-                <button type="submit" form="search-form" id="search-button"><object type="image/svg+xml" data="<%= static_path(@conn, "/images/135-search.svg") %>" class="icon"></object></button>
+            <%= form_for @conn, page_path(@conn, :search), [method: :get, class: "icon-input", id: "search-form"], fn f -> %>
+              <div class="icon-container">
+                <button type="submit" form="search-form" class="icon-plain"><object type="image/svg+xml" data="<%= static_path(@conn, "/images/135-search.svg") %>" class="icon"></object></button>
               </div>
-              <div id="search-bar">
+              <div class="icon-bar">
                 <%= search_input f, :query %>
               </div>
             <% end %>
           </div>
 
           <div id="page-nav">
-						<div class="headline-wrapper">
-							<span class="pre-header">╭─$</span>
-							<h4 class="sidebar-header">Pages</h4>
-						</div>
-						<span class="post-header">╰─➤</span>
-						<%= link "Homepage", to: page_path(@conn, :index), method: :get%>
+            <div class="headline-wrapper">
+              <span class="pre-header">╭─$</span>
+              <h4 class="sidebar-header">Pages</h4>
+            </div>
+            <span class="post-header">╰─➤</span>
+            <%= link "Homepage", to: page_path(@conn, :index), method: :get%>
+            <%= link "Contact", to: page_path(@conn, :contact), method: :get%>
           </div>
 
           <div id="categories">
@@ -66,8 +64,9 @@
           </div>
         </div>
 
+
         <main role="main">
-          <%= render @view_module, @view_template, assigns %>
+        <%= render @view_module, @view_template, assigns %>
         </main>
       </div>
 

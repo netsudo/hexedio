@@ -1,0 +1,39 @@
+.contact-form {
+	display: block;
+	overflow: hidden;
+	margin-top: 15px;
+}
+
+#top-inputs {
+	#subject-input {
+		display: inline-block;
+		margin-top: 10px;
+	}
+
+	#email-input {
+		display: inline-block;
+		margin-top: 10px;
+	}
+}
+
+#bottom-inputs {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: row;
+	flex-wrap: wrap;
+	margin-top: 5px;
+}
+
+.contact-textarea {
+	margin-top: 10px;
+
+	textarea {
+		width: 100%;
+		box-sizing: border-box;
+		height: 300px;
+		border-color: $accent-color;
+		background: $background-color;
+		outline: none;
+		color: $text-color;
+	}
+}
