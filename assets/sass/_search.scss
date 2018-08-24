@@ -1,5 +1,5 @@
 #search {
-	width: 75%;
+	max-width: 220px;
 }
 
 .icon {
@@ -16,21 +16,17 @@
 	flex-wrap: nowrap;
 	border-bottom: 1px solid $accent-color;
 
-	.icon-bar {
-		flex: 1;
-
-		input {
-			align-self: flex-end;
-			background: none;
-			font-family: inherit;
-			color: $text-color;
-			font-size: 10pt;
-			border: none;
-			border-radius: 0;
-			outline: none;
-			padding: 5px 0px 3px 5px;
-			margin: 0;
-		}
+	input {
+		align-self: flex-end;
+		background: none;
+		font-family: inherit;
+		color: $text-color;
+		font-size: 10pt;
+		border: none;
+		border-radius: 0;
+		outline: none;
+		padding: 5px 0px 3px 5px;
+		margin: 0;
 	}
 
 	.icon-button {
