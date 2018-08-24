@@ -1,16 +1,32 @@
-version: '3'
+version: '2'
 services:
-  db:
+  postgres:
     image: postgres
+    volumes:
+       - db_data:/var/lib/postgresql/data
+    environment:
+        POSTGRES_DB: "db_name"
+        POSTGRES_USER: "user"
+        POSTGRES_PASSWORD: "pw"
+        POSTGRES_PORT: 5432
+    networks:
+      - backend
+
   web:
     build: .
-    command: source .env; mix phx.server
-    volumes:
-      - .:/app
+    command: mix phx.server
     ports:
       - "80:4000"
     depends_on:
-      - db
+      - postgres
     environment:
       - MIX_ENV=prod
       - PORT=4000
+    networks:
+      - backend
+
+volumes:
+    db_data:
+
+networks:
+    backend:
