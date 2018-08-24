@@ -11,7 +11,7 @@
   </div>
 
   <div id="post-content">
-    <%= @post.content %>
+    <pre><%= @post.content %></pre>
   </div>
 
 </div>
