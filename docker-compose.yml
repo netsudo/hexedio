@@ -1,12 +1,47 @@
 version: '2'
 services:
+  nginx:
+    build: nginx-image
+    links:
+      - web
+      - letsencrypt
+    environment:
+      - MY_DOMAIN_NAME=hexed.io
+    mem_limit: 2g
+    cpu_shares: 256
+    # restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes_from:
+      - letsencrypt
+    networks:
+      - backend
+
+  letsencrypt:
+    image: quay.io/letsencrypt/letsencrypt:latest
+    command:  bash -c "sleep 10 && certbot certonly --standalone -d hexed.io --text --agree-tos --email myemail@example.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --renew-by-default --standalone-supported-challenges http-01"
+
+    entrypoint: ""
+    volumes:
+      - /etc/letsencrypt
+      - /var/lib/letsencrypt
+    ports:
+      - "80"
+      - "443"
+    environment:
+      - TERM=xterm
+    networks:
+      - backend
+
+
   postgres:
     image: postgres
     volumes:
        - db_data:/var/lib/postgresql/data
     environment:
-        POSTGRES_DB: "db_name"
-        POSTGRES_USER: "user"
+        POSTGRES_DB: "dbname"
+        POSTGRES_USER: "uname"
         POSTGRES_PASSWORD: "pw"
         POSTGRES_PORT: 5432
     networks:
@@ -16,12 +51,12 @@ services:
     build: .
     command: mix phx.server
     ports:
-      - "80:4000"
+      - "5000"
     depends_on:
       - postgres
     environment:
       - MIX_ENV=prod
-      - PORT=4000
+      - PORT=5000
     networks:
       - backend
 
