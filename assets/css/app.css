@@ -12,12 +12,10 @@
 #sidebar {
   margin-top: 19px;
   margin-bottom: 15px;
-  margin-left: 15px; }
+  margin-left: 15px;
+  max-width: 200px; }
   #sidebar span {
     font-family: DejaVu Sans; }
-
-#search {
-  max-width: 220px; }
 
 .icon {
   display: inline;
