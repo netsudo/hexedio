@@ -2,7 +2,10 @@ exports.config = {
   // See http://brunch.io/#documentation for docs.
   files: {
     javascripts: {
-		joinTo: "app.js"
+      joinTo: {
+		  "js/app.js": "js/app.js",
+		  "js/highlight.pack.js": "js/highlight.pack.js",
+	  },
 
       // To use a separate vendor.js bundle, specify two files path
       // http://brunch.io/docs/config#-files-
@@ -27,8 +30,8 @@ exports.config = {
 		},
     },
     templates: {
-      joinTo: "js/app.js"
-    }
+      joinTo: "app.js"
+	},
   },
 
   conventions: {
