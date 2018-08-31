@@ -12,6 +12,8 @@
 // If you no longer want to use a dependency, remember
 // to also remove its path from "config.paths.watched".
 import "phoenix_html"
+import hljs from "highlight.js"
+hljs.initHighlightingOnLoad();
 
 // Import local files
 //

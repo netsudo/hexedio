@@ -9,6 +9,7 @@
 
     <title>Hexed</title>
     <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= static_path(@conn, "/css/xt256.css") %>">
   </head>
 
   <body>
@@ -16,8 +17,7 @@
       <header>
         <h1><%= link "Hexed.io", to: page_path(@conn, :blog) %></h1>
       </header>
-<p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-      <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
+
       <div id="main-content">
         <div id="sidebar">
           <div id="search">
@@ -77,5 +77,6 @@
 
     </div> <!-- /container -->
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+
   </body>
 </html>
