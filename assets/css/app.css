@@ -159,4 +159,8 @@ pre {
   word-wrap: break-word;
   /* Internet Explorer 5.5+ */ }
 
+code {
+  font-size: inherit;
+  font-family: inherit; }
+
 /*# sourceMappingURL=app.css.map */
