@@ -11,7 +11,7 @@
   </div>
 
   <div id="post-content">
-    <pre><%= @post.content %></pre>
+    <pre><%= raw(@post.content) %></pre>
   </div>
 
 </div>
