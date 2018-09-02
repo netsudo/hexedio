@@ -21,8 +21,7 @@ exports.config = {
     },
     stylesheets: {
 		joinTo: {
-			"css/app.css": "css/app.css",
-			"css/xt256.css": "css/xt256.css",
+			"css/app.css": path => path !== 'css/index.css',
 			"css/index.css": "css/index.css"
 		},
     },
@@ -61,6 +60,9 @@ exports.config = {
   },
 
   npm: {
-    enabled: true
+	  enabled: true,
+	  styles: {
+		  "highlight.js": ["styles/agate.css"]
+	  },
   }
 };
