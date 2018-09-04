@@ -13,7 +13,7 @@
   </div>
 
   <div class="excerpt">
-    <pre><%= post.content %></pre>
+    <pre><%= raw(post.content) %></pre>
   </div>
 
 </div>
