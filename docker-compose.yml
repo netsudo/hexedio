@@ -20,12 +20,12 @@ services:
 
   letsencrypt:
     image: quay.io/letsencrypt/letsencrypt:latest
-    command:  bash -c "sleep 10 && certbot certonly --standalone -d hexed.io --text --agree-tos --email myemail@example.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --renew-by-default --standalone-supported-challenges http-01"
+    command:  bash -c "sleep 10 && certbot certonly --standalone -d hexed.io --text --agree-tos --email myemail@example.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --standalone-supported-challenges http-01"
 
     entrypoint: ""
     volumes:
-      - /etc/letsencrypt
-      - /var/lib/letsencrypt
+      - letsencrypt:/etc/letsencrypt
+      - letsencrypt:/var/lib/letsencrypt
     ports:
       - "80"
       - "443"
@@ -61,6 +61,7 @@ services:
 
 volumes:
     db_data:
+    letsencrypt:
 
 networks:
     backend:
