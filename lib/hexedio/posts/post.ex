@@ -18,21 +18,13 @@ defmodule Hexedio.Posts.Post do
     field :title, :string
     field :slug, TitleSlug.Type
     
-<<<<<<< HEAD
     many_to_many :categories, Hexedio.Posts.Category, [join_through: "posts_categories", on_replace: :delete, on_delete: :delete_all]
-=======
-    many_to_many :categories, Hexedio.Posts.Category, [join_through: "posts_categories", on_replace: :delete]
->>>>>>> Using the actual put_assoc functionality in changeset now as opposed to rolling my own
 
     timestamps()
   end
 
   @doc false
   def changeset(post, attrs \\ %{"categories" => []}) do
-<<<<<<< HEAD
-=======
-    IO.inspect attrs
->>>>>>> Using the actual put_assoc functionality in changeset now as opposed to rolling my own
     cat = Repo.all(from c in Category, where: c.name in ^attrs["categories"])
 
     post
