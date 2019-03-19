@@ -9,11 +9,10 @@ defmodule HexedioWeb.AuthController do
     maybe_user = Guardian.Plug.current_resource(conn)
     conn 
       |> render("login.html", changeset: changeset, action:
-                auth_path(conn, :login_handler), maybe_user: maybe_user)
+    auth_path(conn, :login_handler), maybe_user: maybe_user)
   end
 
-  def login_handler(conn, %{"user" => %{"username" => username, "password"
-                    => password}}) do
+  def login_handler(conn, %{"user" => %{"username" => username, "password" => password}}) do
     Auth.authenticate_user(username, password)
     |> login_reply(conn)
   end

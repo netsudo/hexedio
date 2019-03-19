@@ -61,8 +61,6 @@ exports.config = {
 
   npm: {
 	  enabled: true,
-	  styles: {
-		  "highlight.js": ["styles/agate.css"]
+	  "highlight.js": ["styles/sunburst.css"]
 	  },
-  }
 };
