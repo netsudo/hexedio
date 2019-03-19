@@ -1,8 +1,7 @@
 defmodule HexedioWeb.AuthController do
   use HexedioWeb, :controller
   alias Hexedio.Auth
-  alias Hexedio.Auth.User
-  alias Hexedio.Auth.Guardian
+  alias Hexedio.Auth.{User, Guardian}
 
   def login(conn, _params) do
     changeset = Auth.change_user(%User{})
@@ -20,14 +19,14 @@ defmodule HexedioWeb.AuthController do
   defp login_reply({:error, error}, conn) do
     conn
     |> put_flash(:error, error)
-    |> redirect(to: "/")
+    |> redirect(to: "/login")
   end
 
   defp login_reply({:ok, user}, conn) do
     conn
     |> put_flash(:success, "Welcome back!")
     |> Guardian.Plug.sign_in(user)
-    |> redirect(to: "/")
+    |> redirect(to: "/post")
   end
 
   def logout(conn, _) do
