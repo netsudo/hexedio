@@ -84,8 +84,10 @@ defmodule Hexedio.Posts do
 
   """
   def create_post(post, categories) do
-    filter_unchecked = Enum.filter(categories, fn v -> elem(v,1) != "false" end)
-    category_list = Map.keys(filter_unchecked)
+    category_list = categories 
+                    |> Stream.filter(fn {_,y} -> y == "true" end)
+                    |> Stream.map(fn {x,_} -> x end)
+                    |> Enum.to_list
     attrs = Map.put(post, "categories", category_list)
 
     %Post{}
