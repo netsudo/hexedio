@@ -9,6 +9,12 @@ defmodule Hexedio.Posts do
   alias Hexedio.Posts.Post
   alias Hexedio.Posts.Category
 
+  def published_posts do
+    Post
+      |> where([p], p.published == ^true)
+      |> order_by([p], desc: p.inserted_at)
+  end
+
   @doc """
   Returns the list of posts.
 
