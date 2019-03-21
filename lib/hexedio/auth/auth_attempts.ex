@@ -30,7 +30,7 @@ defmodule Hexedio.LoginAttempt do
   def start_timer(username) do
     receive do
     after
-      6_000 -> GenServer.call(__MODULE__, {:stop, "Timer ended.", 0})
+      6_000 -> GenServer.call(__MODULE__, {:reset, username})
     end
   end
 
@@ -41,6 +41,10 @@ defmodule Hexedio.LoginAttempt do
   def handle_call({:update, username}, _from, index_map) do 
     tracked_user? = Map.has_key?(index_map, username)
     {:reply, :ok, increment_or_create(username, index_map, tracked_user?)}
+  end
+
+  def handle_call({:reset, username}, _from, index_map) do
+    {:reply, :ok, Map.delete(index_map, username)}
   end
 
   defp increment_or_create(username, index_map, _tracked_user = true) do
