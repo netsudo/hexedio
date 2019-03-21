@@ -27,11 +27,8 @@ defmodule Hexedio.LoginAttempt do
   @doc """
   Removes the user from the agent so it can be restarted cleanly
   """
-  def start_timer(username) do
-    receive do
-    after
-      6_000 -> GenServer.call(__MODULE__, {:reset, username})
-    end
+  def reset(username) do
+    GenServer.cast(__MODULE__, {:reset, username})
   end
 
   def handle_call({:lookup, username}, _from, index_map) do
@@ -43,8 +40,8 @@ defmodule Hexedio.LoginAttempt do
     {:reply, :ok, increment_or_create(username, index_map, tracked_user?)}
   end
 
-  def handle_call({:reset, username}, _from, index_map) do
-    {:reply, :ok, Map.delete(index_map, username)}
+  def handle_cast({:reset, username}, index_map) do
+    {:noreply, Map.delete(index_map, username)}
   end
 
   defp increment_or_create(username, index_map, _tracked_user = true) do
