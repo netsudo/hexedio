@@ -23,13 +23,17 @@ defmodule Hexedio.LoginAttempt do
   end
 
   defp update(nil, username) do 
-    Agent.update(__MODULE__, 
-                 &Map.put(&1, username, {1, expiry_date()}))
+    Agent.update(
+      __MODULE__, 
+      &Map.put(&1, username, {1, expiry_date()})
+    )
   end
 
   defp update(attempts, username) do 
-    Agent.update(__MODULE__, 
-                 &Map.put(&1, username, set_attempt(attempts)))
+    Agent.update(
+      __MODULE__, 
+      &Map.put(&1, username, set_attempt(attempts))
+    )
   end
 
   defp set_attempt({attempts, %DateTime{} = expiry}) do
