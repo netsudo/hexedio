@@ -24,7 +24,6 @@ defmodule HexedioWeb.AuthController do
   end
 
   defp login_reply({:error, error}, conn) do
-    IO.inspect error
     conn
     |> put_flash(:error, error)
     |> redirect(to: "/login")
