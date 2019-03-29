@@ -21,7 +21,7 @@ defmodule Hexedio.LoginAttempt do
   """
   def make(username) do
     case Auth.get_user(username) do
-      nil -> {:error, "Invalid username or password."}
+      nil -> {:error, "Incorrect username or password"}
       %Auth.User{} -> get(username) |> update(username)
     end
   end
@@ -56,6 +56,6 @@ defmodule Hexedio.LoginAttempt do
     DateTime.now("Etc/UTC")
     |> elem(1)
     # Add 15 minutes to the current date
-    |> DateTime.add(120, :second)
+    |> DateTime.add(20, :second)
   end
 end
