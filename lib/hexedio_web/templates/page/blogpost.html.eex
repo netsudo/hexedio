@@ -14,4 +14,10 @@
     <pre><%= raw(@post.content) %></pre>
   </div>
 
+  <div id="admin-controls">
+    <%= if maybe_user(@conn) != nil do %>
+      <%= link "Edit", to: post_path(@conn, :edit, @post), method: :get%>
+    <% end %>
+  </div>
+
 </div>
