@@ -1,5 +1,6 @@
 defmodule Hexedio.LoginAttempt do
   use Agent
+  alias Hexedio.Auth
 
   @doc """
   Starts the LoginAttempt agent to keep track of login attempts
@@ -19,7 +20,10 @@ defmodule Hexedio.LoginAttempt do
   Adds or increments user when a login attempt is made
   """
   def make(username) do
-    get(username) |> update(username)
+    case Auth.get_user(username) do
+      nil -> {:error, "Invalid username or password."}
+      %Auth.User{} -> get(username) |> update(username)
+    end
   end
 
   defp update(nil, username) do 
