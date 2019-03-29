@@ -56,6 +56,6 @@ defmodule Hexedio.LoginAttempt do
     DateTime.now("Etc/UTC")
     |> elem(1)
     # Add 15 minutes to the current date
-    |> DateTime.add(20, :second)
+    |> DateTime.add(15*60, :second)
   end
 end
