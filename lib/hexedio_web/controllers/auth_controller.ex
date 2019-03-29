@@ -14,19 +14,17 @@ defmodule HexedioWeb.AuthController do
 
   def login_handler(conn, %{"user" => %{"username" => username, "password" => password}}) do
     with :ok  <- LoginAttempt.make(username),
-         true <- elem(LoginAttempt.get(username), 0) <= 5,
          auth  = {:ok, _user} <- Auth.authenticate_user(username, password)
     do
       login_reply(auth, conn)
     else
       error = {:error, _reason} -> 
         login_reply(error, conn)
-      false -> 
-        login_reply({:error, "No attempts left."}, conn)
     end
   end
 
   defp login_reply({:error, error}, conn) do
+    IO.inspect error
     conn
     |> put_flash(:error, error)
     |> redirect(to: "/login")

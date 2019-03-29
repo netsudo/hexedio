@@ -33,15 +33,15 @@ defmodule Hexedio.LoginAttempt do
     )
   end
 
-  defp update(attempts = {i, _}, username) when i <= 5 do 
+  defp update(attempts = {i, _}, username) when i < 5 do 
     Agent.update(
       __MODULE__, 
       &Map.put(&1, username, set_attempt(attempts))
     )
   end
 
-  defp update(attempts = {i, _}, username) when i > 5 do 
-    :ok
+  defp update(attempts = {i, _}, username) when i >= 5 do 
+    {:error, "Login limit exceeded"}
   end
 
   defp set_attempt({attempts, %DateTime{} = expiry}) do
