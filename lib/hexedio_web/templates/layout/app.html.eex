@@ -71,7 +71,7 @@
       </div>
 
       <footer>
-        <p>Copyright © 2016-2018 Hexed.io</p>
+        <p>Copyright © 2016-<%= DateTime.utc_now.year %> Hexed.io</p>
       </footer>
 
     </div> <!-- /container -->
