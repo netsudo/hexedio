@@ -18,8 +18,7 @@ defmodule HexedioWeb.PageController do
   end
 
   def blog(conn, params) do
-    page = Post
-           |> where([p], p.published == ^true)
+    page = Posts.published_posts
            |> Hexedio.Repo.paginate(params)
     render(conn, "blog.html", posts: page.entries, page: page)
   end
