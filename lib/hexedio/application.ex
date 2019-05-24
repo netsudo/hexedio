@@ -14,6 +14,7 @@ defmodule Hexedio.Application do
       supervisor(HexedioWeb.Endpoint, []),
       # Start your own worker by calling: Hexedio.Worker.start_link(arg1, arg2, arg3)
       # worker(Hexedio.Worker, [arg1, arg2, arg3]),
+      worker(Hexedio.LoginAttempt, [])
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

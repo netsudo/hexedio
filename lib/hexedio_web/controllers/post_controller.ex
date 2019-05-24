@@ -25,7 +25,7 @@ defmodule HexedioWeb.PostController do
         |> redirect(to: post_path(conn, :show, post))
       {:error, %Ecto.Changeset{} = changeset} ->
         category_list = Posts.list_categories
-        render(conn, "new.html", category_list: category_list, changeset: changeset)
+        render(conn, "new.html", category_list: category_list, changeset: changeset, post_categories: [])
     end
   end
 

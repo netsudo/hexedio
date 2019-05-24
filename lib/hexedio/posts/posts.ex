@@ -9,6 +9,12 @@ defmodule Hexedio.Posts do
   alias Hexedio.Posts.Post
   alias Hexedio.Posts.Category
 
+  def published_posts do
+    Post
+      |> where([p], p.published == ^true)
+      |> order_by([p], desc: p.inserted_at)
+  end
+
   @doc """
   Returns the list of posts.
 
@@ -84,8 +90,10 @@ defmodule Hexedio.Posts do
 
   """
   def create_post(post, categories) do
-    filter_unchecked = :maps.filter fn _, v -> v != "false" end, categories
-    category_list = Map.keys(filter_unchecked)
+    category_list = categories 
+                    |> Stream.filter(fn {_,y} -> y == "true" end)
+                    |> Stream.map(fn {x,_} -> x end)
+                    |> Enum.to_list
     attrs = Map.put(post, "categories", category_list)
 
     %Post{}
