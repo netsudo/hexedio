@@ -14,7 +14,8 @@ defmodule HexedioWeb.AuthController do
 
   def login_handler(conn, %{"user" => %{"username" => username, "password" => password}}) do
     with :ok  <- LoginAttempt.make(username),
-         auth  = {:ok, _user} <- Auth.authenticate_user(username, password)
+         auth  = {:ok, _user} <- Auth.authenticate_user(username, password),
+         :reset <- LoginAttempt.reset(username)
     do
       login_reply(auth, conn)
     else
