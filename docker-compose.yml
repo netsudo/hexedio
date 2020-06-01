@@ -54,7 +54,7 @@ services:
     environment:
       - VIRTUAL_HOST=www.hexed.io,hexed.io
       - LETSENCRYPT_HOST=www.hexed.io,hexed.io
-      - LETSENCRYPT_EMAIL=k@hexed.io
+      - LETSENCRYPT_EMAIL=[REDACTED]
     image: nginx:1.15.6-alpine
     logging:
       options:
