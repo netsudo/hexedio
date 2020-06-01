@@ -52,8 +52,8 @@ services:
     depends_on:
       - app
     environment:
-      - VIRTUAL_HOST=hexed.io
-      - LETSENCRYPT_HOST=hexed.io
+      - VIRTUAL_HOST=www.hexed.io,hexed.io
+      - LETSENCRYPT_HOST=www.hexed.io,hexed.io
       - LETSENCRYPT_EMAIL=k@hexed.io
     image: nginx:1.15.6-alpine
     logging:
