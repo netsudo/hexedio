@@ -15,7 +15,7 @@ use Mix.Config
 # which you typically run after static files are built.
 config :hexedio, HexedioWeb.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
+  url: [host: "localhost", port: 4000],
   cache_static_manifest: "priv/static/cache_manifest.json"
 
 # Do not print debug messages in production
@@ -58,7 +58,13 @@ config :logger, level: :info
 #
 #     config :hexedio, HexedioWeb.Endpoint, server: true
 #
-
-# Finally import the config/prod.secret.exs
-# which should be versioned separately.
-import_config "prod.secret.exs"
+#
+# Configure your database
+config :hexedio, Hexedio.Repo,
+  adapter: Ecto.Adapters.Postgres,
+  username: "hexDev",
+  password: "hexPassword",
+  database: "hexed",
+  hostname: "postgres",
+  timeout: 30_000,
+  pool_timeout: 30_000
