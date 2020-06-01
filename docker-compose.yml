@@ -1,4 +1,4 @@
-version: '3'
+version: '2'
 services:
   app:
     container_name: hex_app
@@ -20,7 +20,8 @@ services:
       - PORT=4000
       - RECAPTCHA_PUBLIC_KEY=[REDACTED]
       - RECAPTCHA_PRIVATE_KEY=[REDACTED]
-      - SMTP_SERVER=[email_from]
+      - SMTP_SERVER=[email_server]
+      - SMTP_USERNAME=[email_login]
       - SMTP_PASSWORD=[email_pass]
 
   proxy:
