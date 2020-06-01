@@ -1,67 +1,94 @@
-version: '2'
+version: '3'
 services:
-  nginx:
-    build: nginx-image
-    links:
-      - web
-      - letsencrypt
+  app:
+    container_name: hex_app
+    build: .
+    depends_on:
+      - postgres
+    volumes:
+        - ./:/app
+    working_dir: /app
+    command: bash -c "
+                mix deps.get --only prod
+                && mix deps.compile
+                && npm run deploy --prefix ./assets
+                && mix phx.digest
+                && mix ecto.migrate
+                && mix phx.server"
     environment:
-      - MY_DOMAIN_NAME=hexed.io
-    mem_limit: 2g
-    cpu_shares: 256
-    # restart: always
+      - MIX_ENV=prod
+      - PORT=4000
+      - RECAPTCHA_PUBLIC_KEY=[REDACTED]
+      - RECAPTCHA_PRIVATE_KEY=[REDACTED]
+      - SMTP_SERVER=[email_from]
+      - SMTP_PASSWORD=[email_pass]
+
+  proxy:
+    container_name: hex_proxy
+    environment:
+      - DEFAULT_HOST=hexed.io
+    image: jwilder/nginx-proxy
+    labels:
+        com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+    logging:
+      options:
+        max-size: "200k"
+        max-file: "10"
     ports:
       - "80:80"
       - "443:443"
-    volumes_from:
-      - letsencrypt
-    networks:
-      - backend
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      # Increase gateway timeout.
+      - ./devops/proxy/proxy.conf:/etc/nginx/proxy.conf
+      - letsencrypt_certs:/etc/nginx/certs
+      - letsencrypt_challenge:/usr/share/nginx/html
+      - letsencrypt_vhosts:/etc/nginx/vhost.d
+
+  nginx:
+    container_name: hex_nginx
+    depends_on:
+      - app
+    environment:
+      - VIRTUAL_HOST=hexed.io
+      - LETSENCRYPT_HOST=hexed.io
+      - LETSENCRYPT_EMAIL=k@hexed.io
+    image: nginx:1.15.6-alpine
+    logging:
+      options:
+        max-size: "200k"
+        max-file: "10"
+    restart: always
+    volumes:
+      - ./devops/nginx/default.conf:/etc/nginx/conf.d/default.conf
 
   letsencrypt:
-    image: quay.io/letsencrypt/letsencrypt:latest
-    command:  bash -c "sleep 10 && certbot certonly --standalone -d hexed.io --text --agree-tos --email myemail@example.com --server https://acme-v01.api.letsencrypt.org/directory --rsa-key-size 4096 --verbose --keep-until-expiring --standalone-supported-challenges http-01"
-
-    entrypoint: ""
-    volumes:
-      - letsencrypt:/etc/letsencrypt
-      - letsencrypt:/var/lib/letsencrypt
-    ports:
-      - "80"
-      - "443"
+    container_name: hex_letsencrypt
     environment:
-      - TERM=xterm
-    networks:
-      - backend
+      - NGINX_PROXY_CONTAINER=hex_proxy
+    image: jrcs/letsencrypt-nginx-proxy-companion
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - letsencrypt_certs:/etc/nginx/certs
+      - letsencrypt_challenge:/usr/share/nginx/html
+      - letsencrypt_vhosts:/etc/nginx/vhost.d
 
   postgres:
+    container_name: hex_postgres
     image: postgres
     volumes:
-       - db_data:/var/lib/postgresql/data
-    environment:
-        POSTGRES_DB: "dbname"
-        POSTGRES_USER: "uname"
-        POSTGRES_PASSWORD: "pw"
-        POSTGRES_PORT: 5432
-    networks:
-      - backend
-
-  web:
-    build: .
-    command: mix phx.server
+      - db_data:/var/lib/postgresql/data
     ports:
-      - "5000"
-    depends_on:
-      - postgres
+        - "5432"
     environment:
-      - MIX_ENV=prod
-      - PORT=5000
-    networks:
-      - backend
+      POSTGRES_DB: "hexed"
+      POSTGRES_USER: "hexDev"
+      POSTGRES_PASSWORD: "hexPassword"
 
 volumes:
     db_data:
-    letsencrypt:
-
-networks:
-    backend:
+    letsencrypt_certs:
+    letsencrypt_challenge:
+    letsencrypt_vhosts:
